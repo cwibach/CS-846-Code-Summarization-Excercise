@@ -25,7 +25,3 @@ class UnitMap extends Component {
     }
 
 }
-
-export default GoogleApiWrapper({
-    apiKey: 'AIzaSyCUZoKvxElNlsP3373iAb5HCmeBv_JKxig'
-})(UnitMap);
