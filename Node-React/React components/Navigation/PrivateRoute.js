@@ -1,0 +1,49 @@
+import React from "react";
+import { Router, Switch, Route } from "react-router-dom";
+import Home from '../Home/Home';
+import history from './history';
+import LandLordLogin from '../LandlordLogin/LandlordLogin';
+import RenterLogin from '../RenterLogin/RenterLogin';
+import LandlordProfile from '../LandlordProfile/LandlordProfile';
+import RenterProfile from '../RenterProfile';
+import SearchRenters from '../SearchRenters/SearchRenters';
+import SearchUnits from '../SearchUnits';
+import MyUnits from '../MyUnits';
+import AddUnit from "../AddUnit/AddUnit";
+import RenterSignup from '../RenterSignup/RenterSignup';
+import LandlordSignup from '../LandlordSignup/LandlordSignup';
+import LandlordLogout from '../LandlordLogout/LandlordLogout';
+import RenterLogout from '../RenterLogout';
+
+export const UserContext = React.createContext(null);
+
+export default function PrivateRoute({
+
+  //authenticated,
+  //...rest
+}) {
+
+  const [userID, setUserID] = React.useState(1);
+  return (
+
+    <Router history={history}>
+      <UserContext.Provider value={{ userId: userID, setUserId: setUserID }}>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/LandLordLogin" exact component={LandLordLogin} />
+          <Route path="/RenterLogin" exact component={RenterLogin} />
+          <Route path="/LandLordProfile" exact component={LandlordProfile} />
+          <Route path="/RenterProfile" exact component={RenterProfile} />
+          <Route path="/RenterSignup" exact component={RenterSignup} />
+          <Route path="/LandlordSignup" exact component={LandlordSignup} />
+          <Route path="/Community" exact component={SearchRenters} />
+          <Route path="/SearchUnits" exact component={SearchUnits} />
+          <Route path="/MyUnits" exact component={MyUnits} />
+          <Route path="/AddUnit" exact component={AddUnit} />
+          <Route path="/LandlordLogout" exact component={LandlordLogout} />
+          <Route path="/RenterLogout" exact component={RenterLogout} />
+        </Switch>
+      </UserContext.Provider>
+    </Router>
+  );
+}
