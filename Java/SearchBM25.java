@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class SearchBM25 {
 	public static void main(String args[]) throws FileNotFoundException, IOException {
+		// Use the built data structures to serach with BM25
 		int numArgs = args.length;
 		String retrievePath;
 		
@@ -32,6 +33,7 @@ public class SearchBM25 {
 	}
 	
 	public static void search(String retrievePath) throws FileNotFoundException, IOException {
+		// pallow the user to perform search in the command line with BM25, using prebuilt data structures
 		
 		// Initial objects for storing data
 		HashMap<String, Integer> lexicon = new HashMap<String, Integer>();

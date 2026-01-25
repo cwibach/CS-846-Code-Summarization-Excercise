@@ -1,4 +1,8 @@
 function [pairings, costs] = makePairings(numData, strData, combinations, MFU, MBW, deadheads)
+    % take in all data, set of feasible combinations, max flight usage, max branch width, and if deadheads are allowed
+    % find pairings starting with every possible starting flight using buildBranches to expand
+    % return set of all possible pairings with criteria and combinations provided, and appropriate costs
+
     pairings = [];
     costs = [];
     num_legs = size(numData, 1);
@@ -24,7 +28,7 @@ function [pairings, costs] = makePairings(numData, strData, combinations, MFU, M
             pairings = [pairings, pairs];
             costs = [costs, new_costs];
         elseif (deadheads > 0)
-            % use this as starting point with overnight flight before
+            % use this as starting flight with deadhead to arrive
             init_pairing = zeros(num_legs,1);
             init_pairing(i) = 1;
             [pairs, new_costs] = buildBranches(i, flightUsage, numData, strData, init_pairing, 3000, combinations, MFU, MBW, deadheads);

@@ -17,21 +17,17 @@ import java.util.ArrayList;
 
 public class IndexEngine {
 	public static void main(String[] args) throws IOException, FileNotFoundException {
-		// TODO: Add vector length counting for Cosine Similarity
-		// TODO: Allow Stemming option for all searching
-		// TODO: Allow Command Line Searching for BooleanAND and Cosine
-		
-		
 		/* Take in location of file and location to write files to
 		 * New location must not already exist
 		 * Create files for full docs and for docs metadata
 		 * Create file with all docnos
+		 * Create lexicon and inverted index
 		 */
 		int numArgs = args.length; // check arguments provided
 		
-		if (numArgs < 2) { // if to few, notify user and exit
-			System.out.println("Insufficent arguments provided.");
-			System.out.println("Plese provide 2, you provided: " + numArgs);
+		if (numArgs < 2) { // if too few, notify user and exit
+			System.out.println("Insufficient arguments provided.");
+			System.out.println("Please provide 2, you provided: " + numArgs);
 			for (int i=0; i<numArgs; i++) {
 				System.out.println("Argument " + (i+1) + ": " + args[i]);
 			}
@@ -93,7 +89,6 @@ public class IndexEngine {
 		}
 		
 		HashMap<String, String> months = getMonthsMap();
-		
 		
 		// hashset of docnos for short version of indexes
 		HashSet<String> shortDocnos = null; 

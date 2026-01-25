@@ -1,4 +1,7 @@
 function [newPairings] = expandPairings(oldPairings, indexes, newSize)
+    % take in old list of pairings, indices, and new size to reset to
+    % return new set of pairings in proper size
+
     % convert indexes of smaller set of legs to larger set of legs
     newPairings = zeros(newSize, size(oldPairings,2));
     % make set of pairings with size of larger set of legs

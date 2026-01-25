@@ -38,7 +38,8 @@ public class GetFile {
 	
 	public static String retrieveFile(String retrievePath, String idType, String idGiven) 
 			throws FileNotFoundException, IOException{
-		// retrieve the file from the designated path
+		// retrieve the file from the designated path using data provided
+		// return string version of file
 		
 		String docno = null;
 		
@@ -136,6 +137,7 @@ public class GetFile {
 	}
 	
 	public static String[] retrieveFileParts(String retrievePath, String docno) throws IOException {
+		// Get file parts in an array to separate dateline, headlien and full doc, provided a docno and path
 		
 		if (!IndexEngine.pathExists(retrievePath)) {
 			// ensure path exists to retrieve files from

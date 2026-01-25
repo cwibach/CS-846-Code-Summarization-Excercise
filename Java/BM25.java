@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 public class BM25 {
 	public static void main(String[] args) throws FileNotFoundException, IOException{
+		// Perform BM25 search from queries file with prebuild data structure
 		int numArgs;
 		String retrievePath;
 		String queriesFileName;
@@ -80,6 +81,8 @@ public class BM25 {
 	public static void searchDoc(String retrievePath, String queriesFileName, 
 			String writePath, double k1, double b, boolean stemming) 
 			throws FileNotFoundException, IOException{
+		// BM25 search for documents with built structures all from/to files
+
 		// If the path does not exist to retrieve a file from
 		if (!IndexEngine.pathExists(retrievePath)) {
 			System.out.println("Error: Path to retrieve files does not exist");
@@ -177,6 +180,8 @@ public class BM25 {
 			int topicID, String retrievePath, double k1, double b, String endTag,
 			ArrayList<String> allDocnos, ArrayList<Integer> allDocLengths) 
 			throws FileNotFoundException, IOException {
+		// Find string result from searching for docs with BM25
+		// Result string is series of lines with topicID, Q0, docno, rank, score, endTag
 		
 		String result = "";
 		

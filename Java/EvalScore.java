@@ -16,6 +16,9 @@ import java.util.HashSet;
 public class EvalScore {
 	public static void main(String[] args) 
 			throws FileNotFoundException, IOException {
+		// Run evaluation given results path, path to relevancy judgements, and write path
+		// uses whatever eval methods provided in arguments after 3rd
+
 		int numArgs = args.length; // check arguments provided
 		
 		if (numArgs < 3) { // if too few, notify user and exit

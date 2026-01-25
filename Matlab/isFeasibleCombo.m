@@ -1,4 +1,9 @@
 function possible = isFeasibleCombo(nData1, sData1, nData2, sData2, overnights, maxLayover)
+    % take in numeric and string data about 2 flights, and max layover time and nights in layover
+    % determine if it is feasible to have same flight crew on both flights given constraints
+    % many other constraints outlined in project also checked - see other 
+    % return true if none of failing criteria met.
+
     possible = false;
     if (nData1(2) > nData1(3))
         % if flight goes over midnight, increase day (end matters more)

@@ -1,6 +1,6 @@
 function [newPairings, newCosts, breakPoints] = reorderPairings(pairings, costs, newNumMatrices)
 % reorder pairings into n new sets split evenly
-% matrix for new pairings & costs, and break points for new matrices
+% return: matrix for new pairings & costs, and break points for new matrices
     newPairings = zeros(size(pairings));
     newCosts = zeros(size(costs));
     numPairings = size(pairings,2);

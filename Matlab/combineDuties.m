@@ -1,4 +1,9 @@
 function [pairing, cost, dutiesCovered] = combineDuties(pairing, cost, curIndex, combinations, duties, costs, dutiesCovered)
+    % take a pairing, cost of the pairing, current flight index at end of pairing, 
+    % set of possible combinations, all duties, costs of duties, and what duties are covered
+    % check for what duties can be appended to this pairing to make it longer for the same crew
+    % return possibly updated version of pairing
+
     if (isKey(combinations, curIndex))
         considerDuties = combinations{curIndex};
         i = 1;

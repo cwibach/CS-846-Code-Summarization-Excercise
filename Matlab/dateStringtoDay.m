@@ -1,5 +1,6 @@
 function date = dateStringtoDay(dateStrings)
-    % split date and take day portion
+    % take date string in
+    % return day of month as number, usable as only 5 day window used
     date = zeros(size(dateStrings,1),1);
     for i = 1:size(dateStrings, 1)
         stringParts = split(dateStrings(i), "-");

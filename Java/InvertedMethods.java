@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class InvertedMethods{
 	public static void main(String args[]) throws IOException, FileNotFoundException {
-		String retrievePath = "C:\\Users\\carte\\Documents\\Search Engines\\test1";
+		String retrievePath = "path_to_files";
 		
 //		HashMap<String, Integer> lexicon = new HashMap<String, Integer>();
 //		HashMap<Integer, String> reverseLexicon = new HashMap<Integer, String>();
@@ -38,7 +38,7 @@ public class InvertedMethods{
 	}
 	
 	public static String getDocString(String headline, String graphic, String text) {
-		// convert headline, graphic and text into one tokenizable string
+		// convert headline, graphic and text into one tokenizable string for document
 		
 		// String that will become tokens
 		String tokenizeString = "";
@@ -64,6 +64,8 @@ public class InvertedMethods{
 	
 	public static String[] tokenize(String fullText, boolean stemming) {
 		// get all tokens from a string in array
+		// if stemming is used then use prebuilt PorterStemmer
+		// PorterStemmer file not included in project
 		
 		ArrayList<String> tokenList= new ArrayList<String>();
 		
@@ -147,7 +149,8 @@ public class InvertedMethods{
 	}
 	
 	public static int[] getSearchTokenIDs(String[] tokens, HashMap<String, Integer> lexicon) {
-		// get token ids for search query, does not add missing to lexicon
+		// get token ids for search query
+		// if query word not in lexicon, is ignored
 		
 		int[] tokenIDs = new int[tokens.length];
 		int index = 0;
@@ -327,12 +330,12 @@ public class InvertedMethods{
 	}
 	
 	public static ArrayList<Integer> readDocLengths(String retrievePath) throws IOException {
-		/*	Create a list of all docnos in order given the path
-		 *  Return ArrayList of all Docnos to retrieve docnos from ids
+		/*	Create a list of document lengths in order given the path
+		 *  Return ArrayList of all document lengths to retrieve lengths from ids
 		 */
 		ArrayList<Integer> allDocLengths = new ArrayList<Integer>();
 		
-		// get file for docnos
+		// get file for document lengths
 		String docnoPath = retrievePath + "\\alldoclengths.txt";
 		File docnoFile = null;
 		BufferedReader reader = null;

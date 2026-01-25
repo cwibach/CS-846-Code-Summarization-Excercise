@@ -1,5 +1,6 @@
 function combinations = findCombinations(numData, strData, overnights, maxLayover)
-    % get dictionary of feasible connections for each flight leg
+    % provided all data, max # of nights in layover, and max layover time
+    % return dictionary of feasible flight connections with provided constraints
     combinations = dictionary;
     for i=1:size(numData,1)
         % get list of possible connections for each

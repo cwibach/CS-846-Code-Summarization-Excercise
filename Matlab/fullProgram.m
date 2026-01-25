@@ -1,4 +1,7 @@
 function [bestPairings, bestCosts, cost, results, objVals, times] = fullProgram(fileName)
+    % create flight pairings with hopefully low costs using filename
+    % return the pairings found, their costs, the total cost and results as well as costs from each step, including time for each stage to run
+
     % read in initial data
     [numData1, strData1] = readData(fileName);
     num_legs = size(numData1,1);

@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 public class CosineSearch {
 	public static void main(String[] args) throws FileNotFoundException, IOException{
+		// perform cosine similarity search using file with queries and path to write results to
 		int numArgs;
 		String retrievePath;
 		String queriesFileName;
@@ -48,6 +49,8 @@ public class CosineSearch {
 	public static void searchDoc(String retrievePath, String queriesFileName, 
 			String writePath, boolean stemming) 
 			throws FileNotFoundException, IOException{
+		// cosine similarity search from and to files, not in command line
+
 		// If the path does not exist to retrieve a file from
 		if (!IndexEngine.pathExists(retrievePath)) {
 			System.out.println("Error: Path to retrieve files does not exist");
@@ -137,6 +140,8 @@ public class CosineSearch {
 	public static String CosineSearching(int[] tokenIDs, ArrayList<ArrayList<Integer>> invertedIndex, 
 			int topicID, String retrievePath, String endTag) 
 			throws FileNotFoundException, IOException {
+		// perform cosine similarity search using prebuilt data structures
+
 		String result = "";
 		
 		// get all docnos
