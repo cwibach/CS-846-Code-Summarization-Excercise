@@ -4,6 +4,12 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 
 export default function ErrorAlert({alertVisible, alertMessage, setAlertVisible}) {
+    /*
+    This component renders alert messages that are easily hidden, designed for errors
+    alertVisible: boolean indicating if the alert should be shown
+    alertMessage: the message to be displayed in the alert
+    setAlertVisible: function to set the alert visibility state
+    */
 
     const handleClose = () => {
         setAlertVisible(false);
@@ -29,6 +35,12 @@ export default function ErrorAlert({alertVisible, alertMessage, setAlertVisible}
 }
 
 export function SuccessAlert({alertVisible, alertMessage, setAlertVisible}) {
+    /*
+    This component renders alert messages that are easily hidden, designed for success messages
+    alertVisible: boolean indicating if the alert should be shown
+    alertMessage: the message to be displayed in the alert
+    setAlertVisible: function to set the alert visibility state
+    */
 
     const handleClose = () => {
         setAlertVisible(false);

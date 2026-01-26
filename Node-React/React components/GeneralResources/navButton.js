@@ -4,6 +4,12 @@ import history from '../Navigation/history';
 import { Button } from '@mui/material';
 
 const NavButton = ({ destination, text, strong }) => {
+    /*
+    This component renders a button to be used for page navigation
+    destination: the path to navigate to when the button is clicked
+    text: the text to be displayed on the button
+    strong: a boolean indicating if the text should be displayed bolded or not
+    */
     const goToPage = () => {
         history.push(destination);
     }

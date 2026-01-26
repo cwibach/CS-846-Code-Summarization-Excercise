@@ -10,6 +10,14 @@ import { Box, Button, TextField } from '@mui/material';
 const serverURL = "";
 
 const EditLandlordProfile = ({ item, handleChangeMode, userID, getProfile }) => {
+    /*
+    This component renders a form for a landlord to edit profile info (first name, last name, phone)
+    Note that this does not allow the landlord to change their email
+    item: a dictionary with current landlord profile info
+    handleChangeMode: function to revert to profile view
+    userID: the landlord's user ID
+    getProfile: function to refresh profile info after edit
+    */
 
     const [firstName, setFirstName] = React.useState(item.first_name);
     const [lastName, setLastName] = React.useState(item.last_name);

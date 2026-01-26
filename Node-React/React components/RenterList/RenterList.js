@@ -8,6 +8,10 @@ import UnExpandedRenter from './UnExpandedRenter.js';
 
 
 const RenterList = ({ renters }) => {
+    /*
+    This component renders a list of renters who can have info expanded, and added/removed as friends
+    renters: the list of renters to display
+    */
 
     // User Id 
     const { userId } = React.useContext(UserContext);

@@ -5,6 +5,12 @@ import InterestedList from "./InterestedList";
 import { ExpandedUnitInfo, UnexpandedUnitInfo } from "./UnitInfoBoth";
 
 const ListofUnits = ({ units, userId }) => {
+    /*
+    This component renders a list of units which are expandable to show more details
+    and a list of interested renters for the last expanded unit
+    units: array of unit objects to be displayed
+    userId: the id of the current user
+    */
     const [anyExpanded, setAnyExpanded] = React.useState(false);
     const [expanded, setExpanded] = React.useState(0);
 

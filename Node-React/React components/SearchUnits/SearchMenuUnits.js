@@ -9,6 +9,15 @@ import LessGreaterNumericBox from "../GeneralResources/LessGreaterNumericBox";
 const serverURL = "";
 
 const SearchMenuUnits = ({ setUnitList, setUnitMode, setAlertVisible, setAlertMessage, userId}) => {
+    /*
+    This component renders a search menu for a user to search for units
+    Search options include: how to sort, price range, # bedrooms range, # bathrooms range, and if only favourites should be shown
+    setUnitList: function to set the list of units to be displayed
+    setUnitMode: function to revert to display of units
+    setAlertVisible: function to set whether an alert is visible
+    setAlertMessage: function to set the message of an alert
+    userId: the id of the current user
+    */
     const [sortMethod, setSortMethod] = React.useState(0);
     const [minPrice, setMinPrice] = React.useState("");
     const [maxPrice, setMaxPrice] = React.useState("");

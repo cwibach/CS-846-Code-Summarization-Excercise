@@ -4,6 +4,17 @@ import { appTheme } from "../../themes/theme";
 
 
 const LessGreaterNumericBox = ({ minValue, maxValue, minChange, maxChange, minLabel, maxLabel, centreLabel, icon }) => {
+    /*
+    This component renders two numeric input boxes side by side with labels, used for specifying minimum and maximum values
+    minValue: the current value of the minimum input box
+    maxValue: the current value of the maximum input box
+    minChange: function to handle changes in the minimum input box
+    maxChange: function to handle changes in the maximum input box
+    minLabel: label for the minimum input box
+    maxLabel: label for the maximum input box
+    centreLabel: label displayed between the two input boxes
+    icon: symbol to use within both input boxes such as $ or %
+    */
     return (
         <ThemeProvider theme={appTheme}>
             <CssBaseline enableColorScheme />

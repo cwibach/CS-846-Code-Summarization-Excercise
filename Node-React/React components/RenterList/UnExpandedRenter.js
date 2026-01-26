@@ -6,6 +6,13 @@ import { appTheme } from "../../themes/theme";
 const serverURL = "";
 
 const UnExpandedRenter = ({ userId, renter, addToExpanded }) => {
+    /*
+    This component renders a collapsed view of a renter's information
+    Display includes: name, friend status, birthday, gender
+    userID: id of the current user
+    renter: a dictionary with all of the renter info
+    addToExpanded: function to expand renter to show more details
+    */
 
     /*
         Check if renter is friends

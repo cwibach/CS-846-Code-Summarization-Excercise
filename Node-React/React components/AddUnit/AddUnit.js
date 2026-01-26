@@ -14,7 +14,11 @@ import { SuccessAlert } from '../GeneralResources/alert.js';
 const serverURL = "";
 
 function AddUnit() {
-
+    /*
+    This component renders a form for landlords to add a new unit posting with the following info:
+    number of rooms, number of bathrooms, price, and address
+    */
+   
     // User Id 
     const { userId } = React.useContext(UserContext);
 
