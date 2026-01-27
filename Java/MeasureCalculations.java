@@ -44,12 +44,6 @@ public class MeasureCalculations {
 	}
 	
 	public static String precision(int maxIndex, HashSet<String> searchResults, ArrayList<ResultScore> userResults) {
-		/*
-		 * Calculate precision at a certain index given:
-		 * 	The index to measure at
-		 * 	The set of relevant results
-		 * 	The list of returned results in order
-		 */
 		
 		int relevantCount = 0; // number relevant found
 		double precision = 0.0; // precision so far
@@ -72,12 +66,6 @@ public class MeasureCalculations {
 	}
 	
 	public static String ndcg(int maxIndex, HashSet<String> searchResults, ArrayList<ResultScore> userResults) {
-		/*
-		 * Calculate NDCG accuracy given:
-		 * 	The maximum index to count until
-		 * 	The set of relevant results
-		 * 	The list of returned results in order
-		 */
 		
 		int relevantCount = Math.min(searchResults.size(), maxIndex); // get relevant number up to max index
 		double idealDCG = 0.0; // value for ideal DCG

@@ -1,6 +1,6 @@
 function [newPairings, newCosts] = prunePairings(pairings, costs, numData)
     % take in current sets of pairings, costs for each and numeric data
-    % consider feasibility requirements to remove illegal pairings from case data
+    % consider feasibility requirements to remove illegal pairings from external case data
     % remove new set of pairings and updated costs
 
     newPairings = [];

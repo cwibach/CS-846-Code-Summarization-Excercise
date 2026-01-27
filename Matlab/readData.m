@@ -1,7 +1,4 @@
 function [numData, strData] = readData(fileName)
-    % read in xlsx data for flights
-    % convert data to dates, times and flight information
-    % return numeric data and string data separately
 
     % use filename of 'flightLegs.xlsx'
     [~,txt,~] = xlsread(fileName);

@@ -208,10 +208,6 @@ public class IndexEngine {
 				
 				internalID++; // increase internal id
 				
-//				if (internalID > 200) { // simple way to limit size for testing
-//					
-//					break;
-//				}
 			}
 		}
 		
@@ -260,9 +256,7 @@ public class IndexEngine {
 	}
 	
 	public static String[] parseDocno(String docno) {
-		/* Get the date of file from the docno
-		 * Return string used in file locations
-		 */
+		
 		try {
 			String month = docno.substring(2, 4);
 			String day = docno.substring(4,6);
@@ -283,9 +277,6 @@ public class IndexEngine {
 	}
 	
 	public static String getMetaData(String tag, String fullText) {
-		/* Get metadata for any tag in the text
-		 * Return metadata inside tags
-		 */
 		
 		String tempFull = fullText.toLowerCase();
 		if (!tempFull.contains(tag)) {
@@ -304,7 +295,6 @@ public class IndexEngine {
 	}
 	
 	public static HashMap<String, String> getMonthsMap(){
-		// hashmap for months from numbers
 		
 		HashMap<String, String> months = new HashMap<String, String>();
 		months.put("01", "January");
@@ -324,9 +314,6 @@ public class IndexEngine {
 	}
 	
 	public static void writeNewFile(String destination, String contents) throws IOException {
-		/* Create and write to a file with given destination and text
-		 * Return nothing
-		 */
 		FileWriter newWriter = new FileWriter(destination);
 		newWriter.write(contents);
 		newWriter.close();

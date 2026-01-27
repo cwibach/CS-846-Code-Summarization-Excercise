@@ -1,7 +1,4 @@
 function newData = fixTimeZone(numData)
-    % take in all numeric data, and adjust to eastern time zone from england time
-    % adjust day as well as time if need be.
-    % return fixed numeric data
 
     % new version of data
     newData = zeros(size(numData));

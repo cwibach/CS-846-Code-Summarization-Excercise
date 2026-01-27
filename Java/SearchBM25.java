@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class SearchBM25 {
 	public static void main(String args[]) throws FileNotFoundException, IOException {
-		// Use the built data structures to serach with BM25
 		int numArgs = args.length;
 		String retrievePath;
 		
@@ -33,7 +32,6 @@ public class SearchBM25 {
 	}
 	
 	public static void search(String retrievePath) throws FileNotFoundException, IOException {
-		// pallow the user to perform search in the command line with BM25, using prebuilt data structures
 		
 		// Initial objects for storing data
 		HashMap<String, Integer> lexicon = new HashMap<String, Integer>();
@@ -120,10 +118,6 @@ public class SearchBM25 {
 	public static void printTop10(ArrayList<ResultScore> searchResult, int[] tokenIDs, String retrievePath, 
 			HashMap<String, Integer> lexicon, ArrayList<ArrayList<Integer>> invertedIndex) 
 			throws IOException {
-		/*
-		 * Print the top 10 results nicely from list of results
-		 * Takes ordered list, token IDs, path to retrieve from, lexicon and inverted index
-		 */
 		
 		// number to return, in case of less than 10 results
 		int finalCount = Math.min(10, searchResult.size());
@@ -173,9 +167,6 @@ public class SearchBM25 {
 	
 	public static String getDocExcerpts(String docText, int[] queryTokenIDs, 
 			HashMap<String, Integer> lexicon, ArrayList<ArrayList<Integer>> invertedIndex){
-		/*
-		 * Get doc excerpts from text given the search terms, lexicon and inverted index
-		 */
 		
 		// list of all sentences, token sentences and sorted by score
 		ArrayList<String> fullSentences = new ArrayList<String>();
@@ -320,9 +311,7 @@ public class SearchBM25 {
 	public static String docRequested(String docNumString, ArrayList<ResultScore> searchResult, 
 			String retrievePath, Scanner input) 
 			throws FileNotFoundException, IOException {
-		/*
-		 * Handle user asking for doc retrieval
-		 */
+
 		// get doc number
 		int docNum = Integer.parseInt(docNumString);
 		
@@ -351,7 +340,7 @@ public class SearchBM25 {
 	}
 	
 	public static String userSearch(Scanner input) {
-		// ask user for query
+
 		System.out.println("Please enter your search query: ");
 		
 		// read and return user input
@@ -361,12 +350,7 @@ public class SearchBM25 {
 	}
 	
 	public static String userNextStep(Scanner input) {
-		/*
-		 * Ask user for next step from:
-		 * A number for that doc from results
-		 * N for a new query
-		 * Q to quit
-		 */
+
 		
 		// inform user of options
 		System.out.println("Please choose next step, options are:");
@@ -406,9 +390,6 @@ public class SearchBM25 {
 
 	public static ArrayList<ResultScore> searchQuery(int[] tokenIDs, ArrayList<ArrayList<Integer>> invertedIndex, 
 			String retrievePath, ArrayList<String> allDocnos, ArrayList<Integer> allDocLengths) {
-		/*
-		 * search through a query from the user
-		 */
 		
 		// calculate average document length
 		int numDocs = allDocnos.size();

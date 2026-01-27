@@ -16,8 +16,6 @@ import java.util.HashSet;
 public class EvalScore {
 	public static void main(String[] args) 
 			throws FileNotFoundException, IOException {
-		// Run evaluation given results path, path to relevancy judgements, and write path
-		// uses whatever eval methods provided in arguments after 3rd
 
 		int numArgs = args.length; // check arguments provided
 		
@@ -102,9 +100,6 @@ public class EvalScore {
 	
 	private static void calculateResults(String writePath, String qrelsPath, String resultPath, HashSet<String> resultModes) 
 			throws IOException, FileNotFoundException {
-		/*
-		 * Calculate all accuracies for given measures with paths for all files
-		 */
 		
 		BufferedReader resultFile = new BufferedReader(new FileReader(resultPath)); //file with results
 		
@@ -158,10 +153,6 @@ public class EvalScore {
 	
 	private static HashMap<Integer, ArrayList<ResultScore>> makeUserResultMap(BufferedReader resultFile) 
 			throws IOException{
-		/*
-		 * Create HashMap of UserResults
-		 * Return map of topics, and list of Results for this topic in order of score
-		 */
 		
 		HashMap<Integer, ArrayList<ResultScore>> userResults = new HashMap<Integer, ArrayList<ResultScore>>();
 		boolean properFormat = true; // everything is properly formatted
@@ -223,9 +214,7 @@ public class EvalScore {
 	}
 
 	public static void insertResult(ResultScore newResult, ArrayList<ResultScore> allResults) {
-		/*
-		 * Insert result into arraylist to maintain descending order by score
-		 */
+
 		if (allResults.size() == 0) {
 			allResults.add(0, newResult);
 			return;
@@ -290,11 +279,7 @@ public class EvalScore {
 	
 	private static HashMap<Integer, String> findRelevant(BufferedReader qrelsFile) 
 			throws IOException{
-		/*	Creates hashmap mapping topic id to string of all relevant docnos
-		 * 	Relevant docnos separated by spaces for future parsing
-		 * 	Input: Buffered Reader of qrelsFile
-		 * 	Output: HashMap for topic ids to string of relevant docnos
-		 */
+
 		
 		HashMap<Integer, String> relevantResults = new HashMap<Integer, String>();
 		
@@ -332,9 +317,7 @@ public class EvalScore {
 	
 	private static void numericResults(FileWriter output, ArrayList<ResultScore> userResults, HashSet<String> resultModes, String actualResults) 
 			throws IOException{
-		/*
-		 * Calculate numeric results for all required accuracies
-		 */
+
 		String[] posResults = actualResults.split(" "); // split relevant results by spaces
 		HashSet<String> searchResults = new HashSet<String>(); // create set of relevant results
 		

@@ -1,8 +1,4 @@
 function [finalPairings, finalCosts] = dutiestoPairings(duties, costs, numData)
-    % take set of flight duties, costs, and numeric data
-    % determine what duties are combined to create sets of pairings
-    % criteria contained in case for what duties can be combined
-    % return final pairings with of combined duties with costs
 
     dutyData = zeros(size(duties,2),4);
     % start date, end date, start time, end time

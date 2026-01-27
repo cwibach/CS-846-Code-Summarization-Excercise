@@ -1,10 +1,5 @@
 function [pairings, costs, flightUsage] = buildBranches(startIndex, flightUsage, numData, strData, ...
     pairing, cost, combinations, MFU, MBW, deadheads)
-    % recursively build branches for possible flight pairings
-    % use starting flight index, # of times each flight used, all data, current version of pairing, current cost,
-    % dictionary of combinations, max usage of each flight, max width of each branch, and if deadheads are allowed
-    % check what flights can be used next, and branch up to max width then continue down each branch recursively
-    % return all pairings from this starting point from the branches, their costs, and updated flight usage
     
     pairings = [];
     costs = [];

@@ -1,7 +1,4 @@
 function [pairings, costs] = makePairings(numData, strData, combinations, MFU, MBW, deadheads)
-    % take in all data, set of feasible combinations, max flight usage, max branch width, and if deadheads are allowed
-    % find pairings starting with every possible starting flight using buildBranches to expand
-    % return set of all possible pairings with criteria and combinations provided, and appropriate costs
 
     pairings = [];
     costs = [];

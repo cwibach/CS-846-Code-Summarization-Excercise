@@ -11,16 +11,16 @@ public class InvertedMethods{
 	public static void main(String args[]) throws IOException, FileNotFoundException {
 		String retrievePath = "path_to_files";
 		
-//		HashMap<String, Integer> lexicon = new HashMap<String, Integer>();
-//		HashMap<Integer, String> reverseLexicon = new HashMap<Integer, String>();
-//		
-//		readLexicon(retrievePath, lexicon, reverseLexicon);
-//		
-//		for (Integer key: reverseLexicon.keySet()) {
-//			String value = reverseLexicon.get(key);
-//			Integer key2 = lexicon.get(value);
-//			System.out.println(key + ": " + value + ": " + key2);
-//		}
+		//		HashMap<String, Integer> lexicon = new HashMap<String, Integer>();
+		//		HashMap<Integer, String> reverseLexicon = new HashMap<Integer, String>();
+		//		
+		//		readLexicon(retrievePath, lexicon, reverseLexicon);
+		//		
+		//		for (Integer key: reverseLexicon.keySet()) {
+		//			String value = reverseLexicon.get(key);
+		//			Integer key2 = lexicon.get(value);
+		//			System.out.println(key + ": " + value + ": " + key2);
+		//		}
 		
 		ArrayList<ArrayList<Integer>> invertedIndex = new ArrayList<ArrayList<Integer>>();
 		
@@ -38,7 +38,6 @@ public class InvertedMethods{
 	}
 	
 	public static String getDocString(String headline, String graphic, String text) {
-		// convert headline, graphic and text into one tokenizable string for document
 		
 		// String that will become tokens
 		String tokenizeString = "";
@@ -63,9 +62,6 @@ public class InvertedMethods{
 	}
 	
 	public static String[] tokenize(String fullText, boolean stemming) {
-		// get all tokens from a string in array
-		// if stemming is used then use prebuilt PorterStemmer
-		// PorterStemmer file not included in project
 		
 		ArrayList<String> tokenList= new ArrayList<String>();
 		
@@ -115,7 +111,6 @@ public class InvertedMethods{
 	}
 
 	public static int[] TokentoIDs(String[] tokens, HashMap<String, Integer> lexicon, ArrayList<ArrayList<Integer>> invertedIndex) {
-		// get list of ids from list of tokens
 		
 		int[] tokenIDs = new int[1]; //start with new array
 		
@@ -149,8 +144,6 @@ public class InvertedMethods{
 	}
 	
 	public static int[] getSearchTokenIDs(String[] tokens, HashMap<String, Integer> lexicon) {
-		// get token ids for search query
-		// if query word not in lexicon, is ignored
 		
 		int[] tokenIDs = new int[tokens.length];
 		int index = 0;
@@ -170,7 +163,6 @@ public class InvertedMethods{
 	}
 	
 	public static HashMap<Integer, Integer> CountWords(int[] tokenIDs){
-		// count word occurances in a list of tokenIDs
 		
 		HashMap<Integer, Integer> wordCounts = new HashMap<Integer, Integer>();
 		
@@ -188,7 +180,6 @@ public class InvertedMethods{
 	}
 	
 	public static void AddtoPostings(HashMap<Integer, Integer> wordCounts, int docID, ArrayList<ArrayList<Integer>> invertedIndex) {
-		// update inverted index with word counts
 		
 		for (int termId: wordCounts.keySet()) {
 			int count = wordCounts.get(termId);
@@ -204,7 +195,6 @@ public class InvertedMethods{
 	
 	public static void readLexicon(String retrievePath, HashMap<String, Integer> lexicon, HashMap<Integer, String> reverseLexicon) 
 			throws IOException, FileNotFoundException{
-		// read lexicon from file
 		
 		// get file for lexicon
 		String lexiconPath = retrievePath + "\\lexicondoc.txt";
@@ -247,7 +237,6 @@ public class InvertedMethods{
 	
 	public static void readInvertedIndex(String retrievePath, ArrayList<ArrayList<Integer>> invertedIndex) 
 			throws IOException, FileNotFoundException{
-		// read invertedindex in from file
 		
 		String invIndexPath = retrievePath + "\\invertedindex.txt";
 		File invIndexFile = null;
@@ -294,9 +283,6 @@ public class InvertedMethods{
 	}
 
 	public static ArrayList<String> readDocnosList(String retrievePath) throws IOException{
-		/*	Create a list of all docnos in order given the path
-		 *  Return ArrayList of all Docnos to retrieve docnos from ids
-		 */
 		ArrayList<String> allDocnos = new ArrayList<String>();
 		
 		// get file for docnos
@@ -330,9 +316,6 @@ public class InvertedMethods{
 	}
 	
 	public static ArrayList<Integer> readDocLengths(String retrievePath) throws IOException {
-		/*	Create a list of document lengths in order given the path
-		 *  Return ArrayList of all document lengths to retrieve lengths from ids
-		 */
 		ArrayList<Integer> allDocLengths = new ArrayList<Integer>();
 		
 		// get file for document lengths

@@ -2,6 +2,7 @@ function [numData2, strData2, goodPairings, goodCosts, indexes] = getBadLegs(pai
     % take in current set of pairings with costs and all data
     % filter pairings to remove pairings that require flight crew to dead head both directions and only cover 1 leg
     % return new version of data with only uncovered legs, as well as fully covered pairings with costs, and indexes of uncovered legs
+    
     num_pairings = size(costs,2);
     goodPairings = [];
     goodCosts = [];

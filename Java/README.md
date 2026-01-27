@@ -6,4 +6,5 @@ The program first required the dataset to read in so it could construct necessar
 
 It was built in stages, so began with only the data structures, then the algorithm, then evaluation metrics, then the command line interface, then doc snippets in search
 
-Some files removed for Parameter sweeping, measuring memory usage based on data structures, and PorterStemmer as was official code, not creator's own.
+Some files removed such as those for Parameter sweeping, measuring memory usage based on data structures, and PorterStemmer as was official code, not creator's own.
+Other files were removed just to shorten the amount of work.

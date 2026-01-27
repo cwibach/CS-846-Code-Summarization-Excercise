@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class BM25 {
 	public static void main(String[] args) throws FileNotFoundException, IOException{
-		// Perform BM25 search from queries file with prebuild data structure
+		// Perform BM25 search from queries file with prebuild data structure to specified output path
 		int numArgs;
 		String retrievePath;
 		String queriesFileName;
@@ -81,7 +81,7 @@ public class BM25 {
 	public static void searchDoc(String retrievePath, String queriesFileName, 
 			String writePath, double k1, double b, boolean stemming) 
 			throws FileNotFoundException, IOException{
-		// BM25 search for documents with built structures all from/to files
+		// BM25 search for documents by building data structures all from/to files
 
 		// If the path does not exist to retrieve a file from
 		if (!IndexEngine.pathExists(retrievePath)) {
@@ -180,7 +180,7 @@ public class BM25 {
 			int topicID, String retrievePath, double k1, double b, String endTag,
 			ArrayList<String> allDocnos, ArrayList<Integer> allDocLengths) 
 			throws FileNotFoundException, IOException {
-		// Find string result from searching for docs with BM25
+		// Find string result from searching for docs with BM25 on single query
 		// Result string is series of lines with topicID, Q0, docno, rank, score, endTag
 		
 		String result = "";
@@ -243,9 +243,8 @@ public class BM25 {
 	
 	public static void termBM25(ArrayList<Integer> queryDocs, int numDocs, ArrayList<Integer> docLengths, 
 			double avgLength, HashMap<Integer, Double> docScores, double k1, double b) {
-		/*Calculate BM25 value with list of docs with term frequency, total num docs, list of doc lengths, average lengths
+		/*Calculate BM25 value with list of docs with term frequency, # docs with the term, doc lengths, average lengths
 		 * the map of scores, k1 value and b value
-		 * 
 		 */
 		int index = 0;
 		int numWithTerm = queryDocs.size() / 2; // get number with term
