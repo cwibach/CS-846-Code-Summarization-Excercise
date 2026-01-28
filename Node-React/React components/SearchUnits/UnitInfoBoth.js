@@ -216,17 +216,7 @@ export const ExpandedUnitInfo = ({ unit, unExpandUnit, userId }) => {
 }
 
 export const UnexpandedUnitInfo = ({ unit, expandUnit, userId }) => {
-    /*
-    This component renders an unexpanded view of a unit's information
-    Display includes: address and if the user has favourited the unit
-    unit: a dictionary with all of the unit info
-    expandUnit: function to expand the unit view
-    userId: the id of the current user
-    */
 
-    /*
-        Check if renter is interested
-    */
 
     // Creates state variable
     const [interest, setInterest] = React.useState(0)

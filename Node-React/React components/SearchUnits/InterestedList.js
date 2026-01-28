@@ -6,11 +6,6 @@ import RenterList from '../RenterList/index';
 const serverURL = "";
 
 const InterestedList = ({ unitID, userId }) => {
-    /*
-    This component renders a list of renters interested in a unit
-    unitID: the id of the unit to get interested renters for
-    userId: the id of the current user
-    */
 
     // Profile List State
     const [renters, setRenters] = React.useState([]);

@@ -14,11 +14,7 @@ import EditLandlordProfile from './EditLandlordProfile.js';
 const serverURL = "";
 
 export default function LandlordProfile() {
-    /*
-    This component renders the user's landlord profile information, 
-    or a screen for them to edit profile information including:
-    name, email, phone number
-    */
+
     // Profile List State
     const [profile, setProfile] = React.useState([]);
     const [EditMode, setEditMode] = React.useState(false);
