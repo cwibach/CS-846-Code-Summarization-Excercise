@@ -22,7 +22,7 @@
 Include 5-10 example function-summary pairs from the same project when prompting an LLM to summarize code. Keep related header files and dependent code files open in your IDE for additional context. Providing additional information for the project such as function, file, or repository names can also help provide useful context, and this also gives a good idea of what information this audience wants.
 
 **Reasoning:**  
-Same-project few-shot prompting improves performance by ~12.5% over cross-project examples because the LLM can learn project-specific identifiers, naming conventions, and coding style [1]. GitHub Copilot documentation confirms that open tabs provide context that reduces hallucinations [8]. Zero-shot approaches perform poorly—models need multiple examples to understand a project's code→comment mapping. The ASAP paper found that repository information was the single most impactful context component, contributing more to BLEU improvements than even data flow graphs [2]. LLMs can also tailor complexity based on audience [4] and public API documentation differs from internal documentation.
+Same-project few-shot prompting improves performance by ~12.5% over cross-project examples because the LLM can learn project-specific identifiers, naming conventions, and coding style [1]. GitHub Copilot documentation confirms that open tabs provide context that reduces hallucinations [8]. Zero-shot approaches perform poorly—models need multiple examples to understand a project's code→comment mapping. The ASAP paper found that repository information was the single most impactful context component, contributing more to BLEU improvements than even data flow graphs [2]. LLMs can also tailor complexity based on audience [4] and public API documentation differs from internal documentation. Other papers also confirmed that proper training data, even few-shot made a significant impact [16, 18]
 
 **Example (C++):**  
 ```cpp
@@ -148,7 +148,7 @@ void* hashtable_get(const HashTable* table, const char* key);
 The models can struggle to deal with an immense amount of code such as a full repository, or very complicated functions. Breaking up steps into sections of large complex functions, or into groupings of small simililar functions has been shown to provide better results when summarizing with LLMs.
 
 **Reasoning:**  
-Shorter code segments are easier to summarize accurately [1, 3]. Complex functions often have initialization, main processing, and cleanup phases that each merit documentation. This approach also produces more detailed documentation for maintainers.
+Shorter code segments are easier to summarize accurately [1, 3] and longer sections have provided less useful and less accurate summaries [17]. Complex functions often have initialization, main processing, and cleanup phases that each merit documentation. This approach also produces more detailed documentation for maintainers.
 
 **Example:**  
 ```
@@ -173,5 +173,8 @@ Good: "Add a comment block for functions X & Z in folder Y" (where functions X &
 [13] NIU Documentation Standards.  
 [14] Visual Studio Magazine. "Documenting C++ APIs with Doxygen."  
 [15] Source Code Summarization in the Era of Large Language Models. arXiv:2407.07959.
+[16] Haldar, R., & Hockenmaier, J. "Analyzing the Performance of Large Language Models on Code Summarization" arXiv.
+[17] Sundaram, G., et al. "DocStringEval: Evaluating the Effectiveness of Language Models for Code Explanation Through DocString Generation" ieee Xplore.
+[18] Poudel, B., et al. "DocuMint: DocString Generation for Python using Small Language Models" arXiv.
 
 ---
