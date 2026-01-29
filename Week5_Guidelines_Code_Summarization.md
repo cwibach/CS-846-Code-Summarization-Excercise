@@ -196,5 +196,6 @@ The plan should clearly answer questions such as: Which components call this fun
 [16] Haldar, R., & Hockenmaier, J. "Analyzing the Performance of Large Language Models on Code Summarization" arXiv.
 [17] Sundaram, G., et al. "DocStringEval: Evaluating the Effectiveness of Language Models for Code Explanation Through DocString Generation" ieee Xplore.
 [18] Poudel, B., et al. "DocuMint: DocString Generation for Python using Small Language Models" arXiv.
+[19]Ramakrishna Bairi, Atharv Sonwane, Aditya Kanade, Vageesh D. C., Arun Iyer, Suresh Parthasarathy, Sriram Rajamani, B. Ashok, and Shashank Shet. 2024. CodePlan: Repository-Level Coding using LLMs and Planning. Proc. ACM Softw. Eng. 1, FSE, Article 31 (July 2024), 24 pages. https://doi.org/10.1145/3643757
 
 ---
