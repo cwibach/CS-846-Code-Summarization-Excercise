@@ -1,6 +1,6 @@
 # Week 5 Raw Guidelines: Code Summarization / Comprehension
 
-**Authors:** Basit Ali 
+**Authors:** Basit Ali
 **Readings:**   
 - Few-shot training LLMs for project-specific code-summarization (Ahmed & Devanbu)
 - Automatic Semantic Augmentation of Language Model Prompts - ASAP (Ahmed et al.)
@@ -16,13 +16,13 @@
 
 > **Note:** Guidelines should be actionable, specific, and usable during real coding tasks.
 
-### Guideline 1: Provide Training Examples from the Same Project
+### Guideline 1: Provide Training Examples and details from the Same Project
 
 **Description:**  
-When prompting an LLM to summarize code, include 5-10 example function-summary pairs from the same project or codebase. Retrieve these examples from version control history to ensure temporal validity.
+When prompting an LLM to summarize code, include 5-10 example function-summary pairs from the same project or codebase. Retrieve these examples from version control history to ensure temporal validity. Providing details such as function name, or repository name can also aid when the code may seem versatile.
 
 **Reasoning:**  
-Ahmed & Devanbu found that same-project few-shot prompting improved performance by approximately 12.5% over cross-project examples. Project-specific identifiers, naming conventions, and coding styles are highly valuable context that LLMs can leverage effectively. Zero-shot and one-shot approaches performed poorly—the model needs about 10 examples to understand the code→comment mapping for a specific project [1].
+Ahmed & Devanbu found that same-project few-shot prompting improved performance by approximately 12.5% over cross-project examples. Project-specific identifiers, naming conventions, and coding styles are highly valuable context that LLMs can leverage effectively. Zero-shot and one-shot approaches performed poorly—the model needs about 10 examples to understand the code→comment mapping for a specific project [1]. The ASAP paper found that repository information was the single most impactful component in their ablation study, contributing significantly to BLEU score improvements across all languages tested. This context helps the LLM understand the domain and purpose of the code [2].
 
 **Example (C++):**  
 ```
@@ -37,35 +37,13 @@ uint32_t validate_packet(const Packet& pkt) {
 }
 ```
 
----
-
-### Guideline 2: Include Repository and File Path Information
-
-**Description:**  
-Augment your prompt with the repository name, file path, and module/namespace context when asking for code summaries.
-
-**Reasoning:**  
-The ASAP paper found that repository information was the single most impactful component in their ablation study, contributing significantly to BLEU score improvements across all languages tested. This context helps the LLM understand the domain and purpose of the code [2].
-
-**Example (C):**  
-```
-Repository: linux-kernel
-File: drivers/net/ethernet/intel/e1000/e1000_main.c
-Namespace: e1000 driver
-
-Summarize this function:
-static int e1000_open(struct net_device *netdev) { ... }
-```
-
----
-
-### Guideline 3: Instruct the LLM to Generate Concise Summaries
+### Guideline 2: Instruct the LLM to Generate Concise Summaries with specific wording
 
 **Description:**  
 Explicitly request summaries under a specific word count (e.g., "Summarize in under 20 words" or "Generate a one-sentence summary").
 
 **Reasoning:**  
-Sun et al. found that ChatGPT tends to generate verbose summaries that, while semantically rich, perform poorly on n-gram metrics like BLEU because they differ significantly from typical ground-truth labels. The Ericsson study confirmed that a simple "WordRestrict" prompt (asking for <20 words) performed as well as or better than complex ASAP-style prompting [3, 5].
+Sun et al. found that ChatGPT tends to generate verbose summaries that, while semantically rich, perform poorly on n-gram metrics like BLEU because they differ significantly from typical ground-truth labels. The Ericsson study confirmed that a simple "WordRestrict" prompt (asking for <20 words) performed as well as or better than complex ASAP-style prompting [3, 5]. This also works to replace instructions such as "Ignore error handling" which has been shown to cause issues such as in the Ericsson paper [5]
 
 **Example:**  
 ```
@@ -83,7 +61,7 @@ void quicksort(int arr[], int low, int high) {
 
 ---
 
-### Guideline 4: Provide an Explicit Structure to Follow
+### Guideline 3: Provide an Explicit Structure to Follow
 
 **Description:**  
 When generating docstrings or structured documentation, provide a template showing the expected format (e.g., @brief, @param, @return for Doxygen).
@@ -106,31 +84,6 @@ int binary_search(const int* arr, int size, int target);
 
 ---
 
-### Guideline 5: DO NOT Instruct the LLM to Ignore Error Handling Code
-
-**Description:**  
-Avoid prompts like "ignore exception handling" or "skip error checking code" when requesting summaries.
-
-**Reasoning:**  
-The Ericsson paper tested an "IgnoreException" prompt strategy and found it did not improve—and sometimes degraded—summary quality. Error handling is often semantically important for understanding what a function does and what can go wrong [5].
-
-**Example:**  
-```
-// BAD prompt: "Summarize this function, ignoring the try-catch blocks"
-// GOOD prompt: "Summarize this function including its error handling behavior"
-
-try {
-    file = fopen(path, "r");
-    if (!file) throw FileNotFoundError();
-    // ... processing
-} catch (const FileNotFoundError& e) {
-    log_error("File not found: %s", path);
-    return nullptr;
-}
-```
-
----
-
 ### Guideline 6: Tag Identifiers When Types Are Not Clearly Stated
 
 **Description:**  
@@ -147,28 +100,6 @@ Context:
 
 Summarize:
 int send_data(void* ctx, int flags, const char* data, size_t len);
-```
-
----
-
-### Guideline 7: Chain-of-Thought Improves Accuracy at the Cost of Readability
-
-**Description:**  
-Use chain-of-thought prompting (asking the LLM to reason step-by-step before summarizing) when accuracy is critical, but extract only the final summary for documentation.
-
-**Reasoning:**  
-The MAD paper found that structured reasoning (debate, extended reflection) improved semantic alignment (SIDE metric) for summarization tasks. However, intermediate reasoning steps shouldn't appear in final documentation [7]. The Source Code Summarization paper (arxiv:2407.07959) found that advanced prompting techniques like CoT may not always outperform simple zero-shot for LLMs with built-in reasoning.
-
-**Example:**  
-```
-First, analyze this function step by step:
-1. What are the inputs?
-2. What operations does it perform?
-3. What does it return?
-Then provide a one-sentence summary.
-
-// Function to analyze
-double calculate_compound_interest(double principal, double rate, int years, int n);
 ```
 
 ---

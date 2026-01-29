@@ -19,10 +19,10 @@
 ### Guideline 1: Provide Project-Specific Examples in Your Prompt
 
 **Description:**  
-Include 5-10 example function-summary pairs from the same project when prompting an LLM to summarize code. Keep related header files and dependent code files open in your IDE for additional context.
+Include 5-10 example function-summary pairs from the same project when prompting an LLM to summarize code. Keep related header files and dependent code files open in your IDE for additional context. Providing additional information for the project such as function, file, or repository names can also help provide useful context, and this also gives a good idea of what information this audience wants.
 
 **Reasoning:**  
-Same-project few-shot prompting improves performance by ~12.5% over cross-project examples because the LLM can learn project-specific identifiers, naming conventions, and coding style [1]. GitHub Copilot documentation confirms that open tabs provide context that reduces hallucinations [8]. Zero-shot approaches perform poorly—models need multiple examples to understand a project's code→comment mapping.
+Same-project few-shot prompting improves performance by ~12.5% over cross-project examples because the LLM can learn project-specific identifiers, naming conventions, and coding style [1]. GitHub Copilot documentation confirms that open tabs provide context that reduces hallucinations [8]. Zero-shot approaches perform poorly—models need multiple examples to understand a project's code→comment mapping. The ASAP paper found that repository information was the single most impactful context component, contributing more to BLEU improvements than even data flow graphs [2]. LLMs can also tailor complexity based on audience [4] and public API documentation differs from internal documentation.
 
 **Example (C++):**  
 ```cpp
@@ -38,34 +38,10 @@ int packet_send(int socket, const Packet* pkt, int flags);
 
 ---
 
-### Guideline 2: Include Repository, File Path, and Namespace Context
+### Guideline 2: Explicitly Constrain Summary Length
 
 **Description:**  
-Augment your prompt with the repository name, file path, class/namespace, and any relevant type definitions that aren't immediately visible in the code snippet.
-
-**Reasoning:**  
-The ASAP paper found that repository information was the single most impactful context component, contributing more to BLEU improvements than even data flow graphs [2]. For C/C++ code where types may be defined elsewhere, explicitly tagging identifier types helps the LLM reason about semantics.
-
-**Example (C):**  
-```
-Repository: linux-kernel
-File: drivers/usb/core/hub.c
-Context: hub_port_connect is called during USB device enumeration
-
-Types:
-- struct usb_hub contains hub descriptor and port status array
-- port_status is a bitmask defined in include/linux/usb/ch11.h
-
-Summarize this function:
-static int hub_port_connect(struct usb_hub *hub, int port, ...);
-```
-
----
-
-### Guideline 3: Explicitly Constrain Summary Length
-
-**Description:**  
-Request summaries under a specific word count (e.g., "Summarize in one sentence, maximum 15 words") or match a target format like "@brief [one-line description]".
+Request summaries under a specific word count (e.g., "Summarize in one sentence, maximum 15 words") or match a target format like "@brief [one-line description]". This assists in preventing unnecessary summaries such as error handling, which explicitly instructing to ignore this can hurt results.
 
 **Reasoning:**  
 LLMs tend to generate verbose summaries that score poorly on BLEU metrics despite being semantically accurate [3]. The Ericsson study found that a simple "WordRestrict" prompt asking for <20 words performed as well as complex retrieval-augmented approaches while being far simpler to implement [5].
@@ -86,13 +62,13 @@ void quicksort(int* arr, int low, int high);
 
 ---
 
-### Guideline 4: Provide a Documentation Template
+### Guideline 3: Provide a Documentation Template for the Summary
 
 **Description:**  
-When generating structured documentation (docstrings, Doxygen blocks), provide an explicit template showing the expected format. Include 2-3 examples from your codebase that demonstrate your project's style conventions.
+When generating structured documentation (docstrings, Doxygen blocks), provide an explicit template showing the expected format. Include 2-3 examples from your codebase that demonstrate your project's style conventions. Structure can include what to focus on in each section, detailing what aspects of the code are most important.
 
 **Reasoning:**  
-LLMs produce more consistent output when given explicit structure [4]. Few-shot examples matching your documentation style train the model on your terminology, formatting preferences, and level of detail. The ToMMY paper noted that formatting significantly affects perceived usefulness.
+LLMs produce more consistent output when given explicit structure [4]. Few-shot examples matching your documentation style train the model on your terminology, formatting preferences, and level of detail. The ToMMY paper noted that formatting significantly affects perceived usefulness. The Ericsson paper found that expressing conciseness is much more valuable than telling the model to ignore error handling [5]
 
 **Example (C++ Doxygen template):**  
 ```cpp
@@ -131,7 +107,7 @@ void pool_free(MemoryPool* pool, void* ptr);
 
 ---
 
-### Guideline 5: Document Purpose and Contract, Not Implementation
+### Guideline 4: Document Purpose and Contract, Not Implementation
 
 **Description:**  
 Focus summaries on what the function accomplishes (its contract with callers), what parameters represent, and what guarantees it provides—not how it works internally. Include preconditions, postconditions, side effects, and exception/thread safety when relevant.
@@ -163,122 +139,22 @@ void* hashtable_get(const HashTable* table, const char* key);
 
 ---
 
-### Guideline 6: Do NOT Instruct the LLM to Ignore Code Sections
-
-**Description:**  
-Avoid prompts like "ignore exception handling" or "skip error checking code." Include all code when requesting summaries.
-
-**Reasoning:**  
-The Ericsson paper tested an "IgnoreException" strategy and found it degraded summary quality [5]. Error handling is semantically important—it tells users what can go wrong and how failures are handled. Similarly, method names carry significant information; masking them severely impacts all summarization approaches.
-
-**Example:**  
-```cpp
-// BAD prompt: "Summarize this function, ignoring the error handling"
-
-// GOOD prompt: "Summarize this function including its error handling behavior"
-
-// The error handling IS the interesting part:
-FILE* safe_open(const char* path, const char* mode) {
-    if (!path || !mode) return NULL;
-    FILE* f = fopen(path, mode);
-    if (!f) {
-        log_error("Failed to open %s: %s", path, strerror(errno));
-    }
-    return f;
-}
-// Summary: Opens a file with the given mode, logging an error on failure.
-```
 
 ---
 
-### Guideline 7: Break Large Functions into Logical Sections
+### Guideline 5: Break Large amounts of Code into Logical Sections
 
 **Description:**  
-For functions longer than ~50 lines or containing distinct logical phases, decompose the code and summarize sections individually before generating an overall summary.
+The models can struggle to deal with an immense amount of code such as a full repository, or very complicated functions. Breaking up steps into sections of large complex functions, or into groupings of small simililar functions has been shown to provide better results when summarizing with LLMs.
 
 **Reasoning:**  
 Shorter code segments are easier to summarize accurately [1, 3]. Complex functions often have initialization, main processing, and cleanup phases that each merit documentation. This approach also produces more detailed documentation for maintainers.
 
 **Example:**  
-```cpp
-// For a 150-line initialization function:
-// Prompt sequence:
-// 1. "Summarize lines 1-30 (configuration parsing)"
-// 2. "Summarize lines 31-90 (resource allocation)"
-// 3. "Summarize lines 91-150 (hardware initialization)"
-// 4. "Combine these section summaries into an overall @brief"
-
-/**
- * @brief Initializes the device driver with configuration from file.
- *
- * Parses the config file, allocates DMA buffers and IRQ handlers,
- * then programs hardware registers to operational state.
- */
-int driver_init(const char* config_path);
 ```
-
----
-
-### Guideline 8: Use Chain-of-Thought for Complex Code, Extract Final Summary
-
-**Description:**  
-For complex algorithms or non-obvious code, ask the LLM to first analyze the code step-by-step (inputs, operations, outputs, edge cases), then produce a concise final summary. Use only the final summary in documentation.
-
-**Reasoning:**  
-Multi-agent debate and extended reflection improved semantic alignment in summarization [7]. However, advanced prompting may not outperform simple zero-shot for models with built-in reasoning [15]. Use CoT selectively for genuinely complex code where a quick read doesn't reveal purpose.
-
-**Example:**  
-```cpp
-// Prompt for complex algorithm:
-"Analyze this function step by step:
-1. What are the inputs and their constraints?
-2. What algorithm or technique does it implement?
-3. What are the edge cases?
-4. What does it return?
-
-Then provide a one-sentence @brief summary."
-
-// Code to analyze:
-int longest_palindrome_subseq(const char* s, int n);
-
-// LLM reasoning (not in final doc):
-// 1. Input: string s of length n
-// 2. Uses dynamic programming, dp[i][j] = longest palindrome in s[i..j]
-// 3. Edge cases: empty string returns 0, single char returns 1
-// 4. Returns length of longest palindromic subsequence
-
-// Final summary for documentation:
-// @brief Computes the length of the longest palindromic subsequence using DP.
+Bad: "Add comment blocks for all functions in folder Y"
+Good: "Add a comment block for functions X & Z in folder Y" (where functions X & Z are similar, or work in tandem)
 ```
-
----
-
-### Guideline 9: Specify Target Audience When Appropriate
-
-**Description:**  
-Indicate whether the summary is for API consumers (focus on usage), maintainers (include implementation hints), or beginners (add more context). Adjust detail level accordingly.
-
-**Reasoning:**  
-LLMs can tailor complexity based on audience [4]. Public API documentation differs from internal documentation. For complex codebases, consider generating both a brief consumer-facing summary and detailed maintainer notes.
-
-**Example:**  
-```cpp
-// For API consumers:
-"Summarize for library users who will call this function but won't read the implementation"
-
-// For maintainers:
-"Summarize for developers who may need to modify or debug this function"
-
-// Consumer summary:
-// @brief Compresses data using LZ4 algorithm.
-// @return Number of bytes written to output buffer.
-
-// Maintainer summary (in implementation file):
-// Uses streaming LZ4 with 64KB blocks. See lz4_block_compress() for 
-// the core algorithm. Hash table is allocated on first call and reused.
-```
-
----
 
 ## 2. References
 
