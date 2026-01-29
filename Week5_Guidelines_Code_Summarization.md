@@ -154,7 +154,27 @@ Shorter code segments are easier to summarize accurately [1, 3]. Complex functio
 ```
 Bad: "Add comment blocks for all functions in folder Y"
 Good: "Add a comment block for functions X & Z in folder Y" (where functions X & Z are similar, or work in tandem)
+
 ```
+
+---
+
+
+---
+
+### Guideline 6: Develop a global plan for the entire repository.
+
+**Description:**  
+Repository-level code understanding is not about “writing comments,” but about reasoning through the repository’s causal structure.
+
+**Reasoning:** 
+The planning process should begin from a seed file—a clearly identified entry point—and expand to a plan for the entire project. This includes explicitly mapping, at the planning stage, which functions in the seed file call which functions in which files.
+
+The plan should clearly answer questions such as: Which components call this function? Which classes inherit from this class? Where is this field used?
+
+**Example:** 
+
+
 
 ## 2. References
 
