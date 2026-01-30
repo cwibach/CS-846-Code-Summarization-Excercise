@@ -4,10 +4,10 @@ For each page, provide a detailed explanation of the functions it contains and h
 
 ### Task 2 ###
 Criteria:
-- Take in starting index, flight usage, all data, current pairing, current cost, all combinations, max flight usage, max branch width, and if deadheads are allowed
-- Recursively build branches of possible flight pairings
-- Check all possible next flights and build new pairing for each one up to max width
-- Return all created pairings with costs, and new flight usage
+- Specify the entry file and explain its role in the system.
+- Classify all files appropriately and clearly identify their inputs and outputs.
+- Provide a dependency list. 
+
 
 Good Example (with guidelines):
 
@@ -37,8 +37,24 @@ Repository summary — high level (concise)
     - `train.sh` — example shell launcher that runs `distributed.py` with `torch.distributed.launch` and writes checkpoints to an output path.
 
 - Outputs: retrieval results, evaluation reports, and model checkpoints (e.g., `checkpoints_more/` in the training script).
+- Brief dependency list (recommended)
+Python: 3.8+
+Core numeric / utils: numpy, pandas, scipy, tqdm
+ML / DL:
+torch (PyTorch) — required for model training and torch.distributed
+transformers — PLM models & tokenizers
+tokenizers (optional, if used separately)
+Retrieval / IR:
+scikit-learn (TF–IDF, metrics helpers)
+gensim or rank_bm25 (BM25 / classical IR utilities) — at least one
+faiss (optional, for ANN indexing / large-scale retrieval)
+Text processing / NLP: nltk or jieba (depending on language), sentencepiece (if model requires)
+Evaluation / tooling:
+pytrec_eval (optional, for standard IR metrics)
+Dev / distributed extras (optional but common):
+accelerate or apex (optional optimization/FP16)
+NCCL, CUDA drivers (for multi-GPU training)
 
-If you want, I can produce a brief dependency list, execution examples, or a call graph showing which scripts call which modules.
 
 
 Bad Example (without guidelines):
