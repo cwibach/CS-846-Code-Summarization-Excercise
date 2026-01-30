@@ -181,8 +181,31 @@ Good: "Starting from train.sh in plm_retrieval, summarize the code logic in plm_
 
 ```
 
+## 2. Guidelines used in each Problem
 
-## 2. References
+C/C++:
+Guideline 2: Explicitly Constrain Summary Length
+Guideline 3: Provide a Documentation Template for the Summary
+Guideline 4: Document Purpose and Contract, Not Implementation
+
+
+Matlab:
+Guideline 1: Provide Project-Specific Examples in Your Prompt
+Guideline 2: Explicitly Constrain Summary Length
+Guideline 3: Provide a Documentation Template for the Summary
+Guideline 5: Break Large amounts of Code into Logical Sections
+
+React:
+Guideline 1: Provide Project-Specific Examples in Your Prompt
+Guideline 2: Explicitly Constrain Summary Length
+Guideline 3: Provide a Documentation Template for the Summary
+
+Python:
+Guideline 4: Document Purpose and Contract, Not Implementation
+Guideline 6: Develop a global plan for the entire repository.
+
+
+## 3. References
 
 [1] Ahmed, T., & Devanbu, P. "Few-shot training LLMs for project-specific code-summarization." arXiv.  
 [2] Ahmed, T., et al. "Automatic Semantic Augmentation of Language Model Prompts (ASAP)." arXiv.  
