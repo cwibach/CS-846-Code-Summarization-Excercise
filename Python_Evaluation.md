@@ -16,7 +16,7 @@ Good Example (with guidelines):
 Inputs: runtime args, model objects, optimizer, dataloaders, file paths, random seeds.
 Outputs: saved checkpoints, log messages, helper return values (metrics, paths).
 Responsibility: generic helpers (logging, checkpoint save/load, seed setting, small I/O and metric wrappers) used across training and evaluation.
-        - Basic.py
+    - Basic.py
 Inputs: configuration values/constants, possibly simple objects passed by other modules.
 Outputs: shared constants, small helper classes/structs.
 Responsibility: lightweight shared abstractions and constants to avoid duplication.
