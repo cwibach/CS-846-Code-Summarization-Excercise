@@ -2,6 +2,13 @@
 
 For each page, provide a detailed explanation of the functions it contains and how those functions are invoked. The interfaces should be categorized, and a dependency list should be produced.
 
+
+### Task 1 ###
+
+
+
+
+
 ### Task 2 ###
 Criteria:
 - Specify the entry file and explain its role in the system.
