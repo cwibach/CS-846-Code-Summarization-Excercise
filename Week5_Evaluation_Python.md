@@ -39,12 +39,12 @@ Responsibility: load PLM backbone, implement forward pass, compute losses and sc
 Inputs: CLI args (model path, batch size, learning rate, epochs, GPU list, main_rank, workers, output path), environment for torch.distributed.
 Outputs: trained model checkpoints in output_path, training logs, optional progress/metrics per epoch.
 Responsibility: parse args, initialize distributed process group, build model/dataset/dataloaders/optimizer/scheduler, run training loop with gradient sync, evaluate and checkpoint.
-    - train.sh
+  - train.sh
 Inputs: environment variables / hard-coded settings inside script (WORKING_DIR, GPUS_PER_NODE, MODEL_PATH, BATCH_SIZE, LR, EPOCHS, OUTPUT_PATH).
 Outputs: launches distributed.py via python -m torch.distributed.launch which produces checkpoints and logs.
 Responsibility: example launcher that composes CLI options and starts multi-GPU distributed training.
 Evaluation & inference
-    - test.py
+  - test.py
 Inputs: trained checkpoint path, test/validation data files, tokenizer/model config, evaluation options.
 Outputs: retrieval scores for queries, evaluation metrics (MAP, nDCG, precision/recall), and result files (ranked lists).
 Responsibility: load checkpoint, run model in inference mode over dataset, compute and export metrics and ranked results.
