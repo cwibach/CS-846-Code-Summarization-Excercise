@@ -5,14 +5,6 @@ import { appTheme } from "../../themes/theme";
 const serverURL = "";
 
 export const ExpandedUnitInfo = ({ unit, unExpandUnit, userId }) => {
-    /*
-    This component renders an expanded view of a unit's information
-    Display includes: address, # bedrooms, # bathrooms, price/person, total price, landlord contact info
-    and if the user has favourited the unit
-    unit: a dictionary with all of the unit info
-    unExpandUnit: function to unexpand the unit view
-    userId: the id of the current user
-    */
 
 
     /*
