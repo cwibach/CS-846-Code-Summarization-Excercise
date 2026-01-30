@@ -1,4 +1,4 @@
-# Week 5 Example Problems: Code Summarization / Comprehension (C and C++)
+# Week 5 Example Problems: Code Summarization / Comprehension
 
 **Authors:** Basit Ali, Yiran Hu, Carter Ibach
 

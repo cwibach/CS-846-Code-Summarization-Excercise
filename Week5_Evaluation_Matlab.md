@@ -1,6 +1,14 @@
-## MATLAB ##
+# Week 5 Evaluation: Code Summarization / Comprehension (Matlab)
+
+**Authors:** Basit Ali, Yiran Hu, Carter Ibach
+
+---
+
+## 1. Evaluation Criteria
 
 For each function, the comment should concisely state what each parameter passed to the function does/means, what the function does in 1 or 2 lines, and then briefly state what each value returned is. Simply stating the names of parameters/return values is not useful, nor is a long-winded explanation.
+
+## 2. Evaluation specifically for Example problems
 
 ### buildBranches ###
 Criteria:

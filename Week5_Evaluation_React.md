@@ -1,9 +1,17 @@
-## REACT ##
+# Week 5 Evaluation: Code Summarization / Comprehension (React)
+
+**Authors:** Basit Ali, Yiran Hu, Carter Ibach
+
+---
+
+## 1. Evaluation Criteria ##
 All React comments should be very concise, with a brief explanation of each prop passed, as well as a description of what is rendered and what key information is shown/used on the screen. Api's called are not necessary.
 
 Each component's evaluation criteria outlines what information should be included, which should be matched if similar structures to the ones in other React files are followed.
 
-### 1. Landlord Profile ###
+## 2. Evaluation specifically for Example problems
+
+### R_1: Landlord Profile ###
 
 #### Edit Landlord Profile ####
 Criteria:
@@ -57,7 +65,7 @@ Bad Example (without guidelines):
     mounts `EditLandlordProfile` for inline editing. Uses `UserContext` to
     determine the current user and calls the backend to retrieve/update data.
 
-### 2. Search Units ###
+### R_2: Search Units ###
 
 #### Interested List ####
 Criteria:
