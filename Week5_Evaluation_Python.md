@@ -1,4 +1,4 @@
-# Week 5 Evaluation: Code Summarization / Comprehension (Matlab)
+# Week 5 Evaluation: Code Summarization / Comprehension (Python)
 
 **Authors:** Basit Ali, Yiran Hu, Carter Ibach
 
