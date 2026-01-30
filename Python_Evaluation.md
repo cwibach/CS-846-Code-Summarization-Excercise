@@ -4,6 +4,31 @@ For each page, provide a detailed explanation of the functions it contains and h
 
 
 ### Task 1 ###
+Criteria:
+- Organize the file summaries in a systematic and coherent manner rather than listing each file’s functionality in isolation.
+- Describe the inputs and outputs, and provide an overall summary of the module’s functionality.
+
+Good Example (with guidelines):
+
+- Purpose: implementations and experiments for document retrieval using classical IR baselines and pretrained language models (PLMs), plus tools for dataset generation, labeling and evaluation.
+
+Bad Example (without guidelines):
+
+    % Basic.py — core utilities and small abstractions used across the PLM code (common constants, simple helper classes, possibly a base Trainer or config loader).
+
+    % distributed.py — distributed training entrypoint. Parses CLI options, initializes torch.distributed, builds model/dataset/dataloaders, runs the training loop and checkpointing across multiple GPUs/nodes.
+
+    % MuserDataset.py — dataset loader: reads input files, preprocesses examples, tokenizes texts, implements __len__ / __getitem__ for PyTorch DataLoader.
+
+    % MuserFormatter.py — batching and collation logic: converts raw dataset items into model-ready tensors (attention masks, token ids, labels), handles padding and any special input formatting used by the PLM.
+
+    % MuserPLM.py — model wrapper around a pretrained language model: loads the backbone (via transformers), defines forward pass, scoring/loss computation, and any task-specific heads or pooling.
+
+    % test.py — evaluation / inference script: loads a checkpoint, runs model inference on validation/test splits, produces retrieval scores and invokes metric computations (e.g., MAP, nDCG) or exports results.
+
+    % train.sh — example shell launcher that prepares options and calls python -m torch.distributed.launch to run distributed.py with multi-GPU settings and output/checkpoint path.
+
+    % utils.py — misc utilities: logging, seed setting, checkpoint save/load, metric helpers, and small I/O helpers used by training and evaluation.
 
 
 
@@ -17,8 +42,6 @@ Criteria:
 
 
 Good Example (with guidelines):
-
-Repository summary — high level (concise)
 
 - Purpose: implementations and experiments for document retrieval using classical IR baselines and pretrained language models (PLMs), plus tools for dataset generation, labeling and evaluation.
 
