@@ -12,39 +12,39 @@ Good Example (with guidelines):
 
 - The plm_retrieval package implements a PLM-based retrieval pipeline: data loading & batching, a pretrained-language-model wrapper for scoring, utilities for training/checkpointing, a distributed training entrypoint, and evaluation/inference scripts. Inputs are dataset files (text, query-document pairs, labels) and PLM checkpoints; outputs are trained model checkpoints, retrieval scores, and evaluation metrics.
 - Core utilities
-utils.py
+        - utils.py
 Inputs: runtime args, model objects, optimizer, dataloaders, file paths, random seeds.
 Outputs: saved checkpoints, log messages, helper return values (metrics, paths).
 Responsibility: generic helpers (logging, checkpoint save/load, seed setting, small I/O and metric wrappers) used across training and evaluation.
-Basic.py
+        - Basic.py
 Inputs: configuration values/constants, possibly simple objects passed by other modules.
 Outputs: shared constants, small helper classes/structs.
 Responsibility: lightweight shared abstractions and constants to avoid duplication.
 - Data & preprocessing
-MuserDataset.py
+        - MuserDataset.py
 Inputs: dataset files (json/csv/txt), tokenizer or tokenization config, dataset split flags.
 Outputs: items for indexing by PyTorch DataLoader (raw/tokenized examples, labels, metadata).
 Responsibility: read/parse raw data, convert to example objects, handle indexing and dataset-level preprocessing.
-MuserFormatter.py
+        - MuserFormatter.py
 Inputs: batch of raw/tokenized examples from MuserDataset, tokenizer/pad settings.
 Outputs: batched tensors (input ids, attention masks, token type ids, label tensors) and any required masks/indices.
 Responsibility: collate function / batch formatting, padding, packing multiple inputs into model-ready tensors.
 Model
-MuserPLM.py
+        - MuserPLM.py
 Inputs: pretrained model id/path (e.g., HuggingFace name), tokenized input tensors from formatter, training/eval flags.
 Outputs: logits/scores, loss tensor (during training), pooled embeddings (if used), model state for saving.
 Responsibility: load PLM backbone, implement forward pass, compute losses and scoring logic specific to retrieval task (pairwise/listwise/scoring head), expose save/load hooks.
 - Training & distributed runtime
-distributed.py
+        - distributed.py
 Inputs: CLI args (model path, batch size, learning rate, epochs, GPU list, main_rank, workers, output path), environment for torch.distributed.
 Outputs: trained model checkpoints in output_path, training logs, optional progress/metrics per epoch.
 Responsibility: parse args, initialize distributed process group, build model/dataset/dataloaders/optimizer/scheduler, run training loop with gradient sync, evaluate and checkpoint.
-train.sh
+        - train.sh
 Inputs: environment variables / hard-coded settings inside script (WORKING_DIR, GPUS_PER_NODE, MODEL_PATH, BATCH_SIZE, LR, EPOCHS, OUTPUT_PATH).
 Outputs: launches distributed.py via python -m torch.distributed.launch which produces checkpoints and logs.
 Responsibility: example launcher that composes CLI options and starts multi-GPU distributed training.
 Evaluation & inference
-test.py
+        - test.py
 Inputs: trained checkpoint path, test/validation data files, tokenizer/model config, evaluation options.
 Outputs: retrieval scores for queries, evaluation metrics (MAP, nDCG, precision/recall), and result files (ranked lists).
 Responsibility: load checkpoint, run model in inference mode over dataset, compute and export metrics and ranked results.
