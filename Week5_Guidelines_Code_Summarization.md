@@ -1,6 +1,7 @@
 # Week 5 Guidelines: Code Summarization / Comprehension
 
-**Authors:** Basit Ali  
+**Authors:** Basit Ali, Yiran Hu, Carter Ibach 
+
 **Readings Assigned:**  
 - Few-shot training LLMs for project-specific code-summarization (Ahmed & Devanbu)
 - Automatic Semantic Augmentation of Language Model Prompts - ASAP (Ahmed et al.)
