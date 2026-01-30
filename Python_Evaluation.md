@@ -12,7 +12,7 @@ Good Example (with guidelines):
 
 - The plm_retrieval package implements a PLM-based retrieval pipeline: data loading & batching, a pretrained-language-model wrapper for scoring, utilities for training/checkpointing, a distributed training entrypoint, and evaluation/inference scripts. Inputs are dataset files (text, query-document pairs, labels) and PLM checkpoints; outputs are trained model checkpoints, retrieval scores, and evaluation metrics.
 - Core utilities
-        - utils.py
+  - utils.py
 Inputs: runtime args, model objects, optimizer, dataloaders, file paths, random seeds.
 Outputs: saved checkpoints, log messages, helper return values (metrics, paths).
 Responsibility: generic helpers (logging, checkpoint save/load, seed setting, small I/O and metric wrappers) used across training and evaluation.
