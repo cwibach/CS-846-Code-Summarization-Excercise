@@ -198,9 +198,9 @@ Good: "Starting from train.sh in plm_retrieval, summarize the code logic in plm_
 [13] NIU Documentation Standards.  
 [14] Visual Studio Magazine. "Documenting C++ APIs with Doxygen."  
 [15] Source Code Summarization in the Era of Large Language Models. arXiv:2407.07959.
-[16] Haldar, R., & Hockenmaier, J. "Analyzing the Performance of Large Language Models on Code Summarization" arXiv.
-[17] Sundaram, G., et al. "DocStringEval: Evaluating the Effectiveness of Language Models for Code Explanation Through DocString Generation" ieee Xplore.
-[18] Poudel, B., et al. "DocuMint: DocString Generation for Python using Small Language Models" arXiv.
-[19]Ramakrishna Bairi, Atharv Sonwane, Aditya Kanade, Vageesh D. C., Arun Iyer, Suresh Parthasarathy, Sriram Rajamani, B. Ashok, and Shashank Shet. 2024. CodePlan: Repository-Level Coding using LLMs and Planning. 
+[16] Haldar, R., & Hockenmaier, J. "Analyzing the Performance of Large Language Models on Code Summarization" arXiv.  
+[17] Sundaram, G., et al. "DocStringEval: Evaluating the Effectiveness of Language Models for Code Explanation Through DocString Generation" ieee Xplore.  
+[18] Poudel, B., et al. "DocuMint: DocString Generation for Python using Small Language Models" arXiv.  
+[19] Ramakrishna Bairi, Atharv Sonwane, Aditya Kanade, Vageesh D. C., Arun Iyer, Suresh Parthasarathy, Sriram Rajamani, B. Ashok, and Shashank Shet. 2024. CodePlan: Repository-Level Coding using LLMs and Planning.   
 
 ---

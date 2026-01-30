@@ -1,9 +1,9 @@
 # Week 5 Example Problems: Code Summarization / Comprehension (C and C++)
 
-**Authors:** Basit Ali
+**Authors:** Basit Ali, Yiran Hu, Carter Ibach
 
 
-## 1. Example Problems
+## 1. C/C++
 
 > **Instructions:** For each problem, generate documentation (docstrings/Doxygen comments) for the provided functions. Try first WITHOUT the guidelines, then WITH the guidelines to compare results.
 
@@ -37,13 +37,5 @@ Generate documentation for this thread-safe event queue with timeout support. Pa
 
 **Task Description:**  
 Generate documentation for this LRU (Least Recently Used) cache implementation. Focus on time complexity guarantees and thread safety (or lack thereof).
-
-## 2. References
-
-[1] Memory pool allocator pattern based on common embedded systems implementations  
-[2] Ring buffer implementation inspired by lock-free queue designs  
-[3] Smart pointer design follows std::unique_ptr semantics  
-[4] Event queue pattern common in game engines and async frameworks  
-[5] LRU cache implementation uses standard O(1) hash map + doubly linked list approach
 
 ---
