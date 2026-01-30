@@ -30,6 +30,11 @@ Criteria should be applicable to any problem in this topic.
 **Evaluation Description:**
 Documentation must clearly explain the memory pool's allocation strategy (fixed-size blocks), ownership semantics, and the relationship between pool_alloc/pool_free. Each function should document preconditions (valid pool pointer) and postconditions (memory state changes).
 
+**Applicable Guidelines:**
+- **Guideline 2 (Constrain Summary Length):** @brief should be one concise sentence
+- **Guideline 3 (Documentation Template):** Follow Doxygen format with @brief, @param, @return, @pre, @post
+- **Guideline 4 (Document Purpose, Not Implementation):** Describe what the function does for callers, not how it works internally
+
 **Criteria:**
 - Document that blocks are fixed-size and pre-allocated
 - Explain ownership: caller owns returned memory, must free via pool_free
@@ -83,12 +88,22 @@ MemoryPool* pool_create(size_t block_size, size_t block_count);
 void* pool_alloc(MemoryPool* pool);
 ```
 
+**Why Bad Example Fails:**
+- Violates **Guideline 4**: Describes implementation ("free list implementation that iterates") instead of purpose
+- Violates **Guideline 3**: Missing @pre/@post tags, @param just restates types
+- Missing ownership and error semantics
+
 ---
 
 ### Problem C_2: Ring Buffer (C)
 
 **Evaluation Description:**
 Documentation must explain the lock-free nature using atomics, the single-producer/single-consumer model, and the circular buffer semantics. Functions should document thread-safety guarantees and memory ordering considerations.
+
+**Applicable Guidelines:**
+- **Guideline 3 (Documentation Template):** Use @note for thread-safety guarantees
+- **Guideline 4 (Document Purpose, Not Implementation):** Document the contract (SPSC model), not atomic operations used
+- **Raw Guideline 5 (Exception/Thread Safety):** Thread-safety is one of the few implementation details that belongs in API docs
 
 **Criteria:**
 - Document SPSC (single-producer single-consumer) thread safety model
@@ -141,12 +156,22 @@ typedef struct { /* ... */ } RingBuffer;
 bool ring_push(RingBuffer* rb, const void* data, size_t len);
 ```
 
+**Why Bad Example Fails:**
+- Violates **Guideline 4**: Describes implementation ("atomic_fetch_add") instead of thread-safety contract
+- Violates **Raw Guideline 5**: Doesn't document thread-safety guarantees for users
+- @param just restates types instead of constraints
+
 ---
 
 ### Problem C_3: Configuration Parser (C)
 
 **Evaluation Description:**
 Documentation must explain the INI file format support, error handling via ConfigError enum, and the getter functions' default value semantics. Section and key lookup behavior should be clearly documented.
+
+**Applicable Guidelines:**
+- **Guideline 2 (Constrain Summary Length):** Keep @brief concise, details in description
+- **Guideline 3 (Documentation Template):** Use @note for ownership semantics
+- **Guideline 4 (Document Purpose, Not Implementation):** Describe format support and behavior, not parsing algorithm
 
 **Criteria:**
 - Document INI format support ([sections], key=value, comments with ; or #)
@@ -211,12 +236,22 @@ const char* config_get_string(const Config* cfg, const char* section,
                               const char* key, const char* default_val);
 ```
 
+**Why Bad Example Fails:**
+- Violates **Guideline 4**: Describes implementation ("fopen", "strtok", "split on '='") instead of format support
+- Violates **Guideline 3**: Missing @post for ownership, missing @note for memory semantics
+- @brief too vague ("Gets a string" - what string? under what conditions?)
+
 ---
 
 ### Problem CPP_1: Smart Pointer with Custom Deleter (C++)
 
 **Evaluation Description:**
 Documentation must explain RAII semantics, move-only ownership model, and custom deleter support. Template parameters should be documented with @tparam. Special attention to noexcept specifications and deleted copy operations.
+
+**Applicable Guidelines:**
+- **Guideline 3 (Documentation Template):** Use @tparam for template parameters, @pre/@post for contracts
+- **Guideline 4 (Document Purpose, Not Implementation):** Describe ownership semantics, not internal pointer manipulation
+- **Raw Guideline 5 (Exception/Thread Safety):** Document exception safety (@exceptsafe)
 
 **Criteria:**
 - Document exclusive ownership semantics (move-only, no copying)
@@ -279,12 +314,22 @@ pointer release() noexcept;
 typename std::add_lvalue_reference<T>::type operator*() const;
 ```
 
+**Why Bad Example Fails:**
+- Violates **Guideline 4**: Describes implementation ("setting ptr_ to nullptr", "temporary variable")
+- Violates **Guideline 3**: Missing @tparam, missing @pre/@post for contracts
+- No explanation of ownership transfer or RAII semantics
+
 ---
 
 ### Problem CPP_2: Thread-Safe Event Queue (C++)
 
 **Evaluation Description:**
 Documentation must explain thread-safety guarantees, blocking vs non-blocking operations, and the close() mechanism for graceful shutdown. Timeout-based operations should document their behavior when timeout expires or queue is closed.
+
+**Applicable Guidelines:**
+- **Guideline 3 (Documentation Template):** Use @tparam, document all return conditions
+- **Guideline 4 (Document Purpose, Not Implementation):** Describe blocking behavior, not mutex/condition_variable usage
+- **Raw Guideline 5 (Exception/Thread Safety):** Document thread-safety for multi-producer/multi-consumer
 
 **Criteria:**
 - Document that queue is safe for multiple producers and consumers
@@ -348,12 +393,22 @@ std::optional<T> pop();
 void close();
 ```
 
+**Why Bad Example Fails:**
+- Violates **Guideline 4**: Describes implementation ("unique_lock", "condition_variable", "lambda predicate")
+- Violates **Raw Guideline 5**: Doesn't document thread-safety guarantees
+- Missing @tparam, vague @return, doesn't explain close() semantics
+
 ---
 
 ### Problem CPP_3: LRU Cache (C++)
 
 **Evaluation Description:**
 Documentation must explain the LRU eviction policy, O(1) time complexity for get/put operations, and the internal data structure (list + hash map). Template parameters and custom hash support should be documented.
+
+**Applicable Guidelines:**
+- **Guideline 3 (Documentation Template):** Use @tparam for all template parameters including Hash
+- **Guideline 4 (Document Purpose, Not Implementation):** Document eviction policy and complexity, not list splicing
+- **Guideline 2 (Constrain Summary Length):** Keep @brief focused on what, details on complexity in description
 
 **Criteria:**
 - Document LRU eviction: least recently used item removed when full
@@ -426,6 +481,11 @@ std::optional<Value> get(const Key& key);
  */
 bool contains(const Key& key) const;
 ```
+
+**Why Bad Example Fails:**
+- Violates **Guideline 4**: Describes implementation ("lookup_ map", "touch()", "splice the iterator", "items_ list")
+- Violates **Guideline 3**: Missing @tparam, missing @post for LRU ordering side effect
+- Class description mentions data structures instead of behavior/guarantees
 
 ---
 
