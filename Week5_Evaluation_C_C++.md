@@ -1,6 +1,6 @@
 # Week 5 Evaluation: Code Summarization / Comprehension (C and C++)
 
-**Authors:** Basit Ali
+**Authors:** Basit Ali, Yiran Hu, Carter Ibach
 
 ---
 
