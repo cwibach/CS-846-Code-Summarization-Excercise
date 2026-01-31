@@ -24,7 +24,7 @@
 * Exception/error handling behavior is documented
 * For C++ templates, @tparam documents template parameters and their requirements
 
-### Problem C_1: Memory Pool Allocator (C)
+### Problem C_1: `memory_pool.h` / `memory_pool.c`
 
 **Evaluation Description:**
 Documentation must clearly explain the memory pool's allocation strategy (fixed-size blocks), ownership semantics, and the relationship between pool_alloc/pool_free. Each function should document preconditions (valid pool pointer) and postconditions (memory state changes).
@@ -94,7 +94,7 @@ void* pool_alloc(MemoryPool* pool);
 
 ---
 
-### Problem C_2: Ring Buffer (C)
+### Problem C_2: `ring_buffer.h` / `ring_buffer.c`
 
 **Evaluation Description:**
 Documentation must explain the lock-free nature using atomics, the single-producer/single-consumer model, and the circular buffer semantics. Functions should document thread-safety guarantees and memory ordering considerations.
@@ -162,7 +162,7 @@ bool ring_push(RingBuffer* rb, const void* data, size_t len);
 
 ---
 
-### Problem C_3: Configuration Parser (C)
+### Problem C_3: `config_parser.h`
 
 **Evaluation Description:**
 Documentation must explain the INI file format support, error handling via ConfigError enum, and the getter functions' default value semantics. Section and key lookup behavior should be clearly documented.
@@ -242,7 +242,7 @@ const char* config_get_string(const Config* cfg, const char* section,
 
 ---
 
-### Problem CPP_1: Smart Pointer with Custom Deleter (C++)
+### Problem CPP_1: `unique_handle.hpp`
 
 **Evaluation Description:**
 Documentation must explain RAII semantics, move-only ownership model, and custom deleter support. Template parameters should be documented with @tparam. Special attention to noexcept specifications and deleted copy operations.
@@ -320,7 +320,7 @@ typename std::add_lvalue_reference<T>::type operator*() const;
 
 ---
 
-### Problem CPP_2: Thread-Safe Event Queue (C++)
+### Problem CPP_2: `event_queue.hpp`
 
 **Evaluation Description:**
 Documentation must explain thread-safety guarantees, blocking vs non-blocking operations, and the close() mechanism for graceful shutdown. Timeout-based operations should document their behavior when timeout expires or queue is closed.
@@ -399,7 +399,7 @@ void close();
 
 ---
 
-### Problem CPP_3: LRU Cache (C++)
+### Problem CPP_3: `lru_cache.hpp`
 
 **Evaluation Description:**
 Documentation must explain the LRU eviction policy, O(1) time complexity for get/put operations, and the internal data structure (list + hash map). Template parameters and custom hash support should be documented.

@@ -4,38 +4,40 @@
 
 **Github Repo:** https://github.com/cwibach/CS-846-Code-Summarization-Excercise.git
 
+**Model:** Please use Raptor Mini as the model to stay consistent with our results.
+
 > **Instructions:** For each problem, generate documentation (docstrings/Doxygen comments) for the provided functions. Try first WITHOUT the guidelines, then WITH the guidelines to compare results.
 
 ## 1. C/C++ (15 minutes)
 
-### Problem C_1: Memory Pool Allocator (C)
+### Problem C_1: `memory_pool.h` / `memory_pool.c`
 
-**Task Description:**  
+**Task Description:**
 Generate Doxygen documentation for all functions in this memory pool implementation. Focus on the @brief, @param, @return, and any relevant @pre/@post conditions.
 
-### Problem C_2: Ring Buffer (C)
+### Problem C_2: `ring_buffer.h` / `ring_buffer.c`
 
-**Task Description:**  
+**Task Description:**
 Generate Doxygen documentation for this lock-free single-producer single-consumer ring buffer. Pay attention to thread safety guarantees and memory ordering.
 
-### Problem C_3: Configuration Parser (C)
+### Problem C_3: `config_parser.h`
 
-**Task Description:**  
+**Task Description:**
 Generate documentation for this INI-style configuration file parser. Include information about error handling and memory ownership.
 
-### Problem CPP_1: Smart Pointer with Custom Deleter (C++)
+### Problem CPP_1: `unique_handle.hpp`
 
-**Task Description:**  
+**Task Description:**
 Generate Doxygen documentation for this unique_ptr-like smart pointer with custom deleter support. Document exception safety and ownership semantics.
 
-### Problem CPP_2: Thread-Safe Event Queue (C++)
+### Problem CPP_2: `event_queue.hpp`
 
-**Task Description:**  
+**Task Description:**
 Generate documentation for this thread-safe event queue with timeout support. Pay special attention to thread safety guarantees and blocking behavior.
 
-### Problem CPP_3: LRU Cache (C++)
+### Problem CPP_3: `lru_cache.hpp`
 
-**Task Description:**  
+**Task Description:**
 Generate documentation for this LRU (Least Recently Used) cache implementation. Focus on time complexity guarantees and thread safety (or lack thereof).
 
 ---
