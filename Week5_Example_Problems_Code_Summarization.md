@@ -2,6 +2,8 @@
 
 **Authors:** Basit Ali, Yiran Hu, Carter Ibach
 
+**Github Repo:** https://github.com/cwibach/CS-846-Code-Summarization-Excercise.git
+
 > **Instructions:** For each problem, generate documentation (docstrings/Doxygen comments) for the provided functions. Try first WITHOUT the guidelines, then WITH the guidelines to compare results.
 
 ## 1. C/C++ (15 minutes)
@@ -56,11 +58,11 @@ All code for React activities is in the Node-React directory in the github provi
 
 ### Problem R_1: LandlordProfile
 
-Add block comments for each component in the LandlordProfile folder
+Add block comments for each component in the LandlordProfile folder, with information about props passed, and what the component does. No specific mention of API's is needed.
 
 ### Problem R_2: SearchUnits
 
-Add block comments for each component in the SearchUnits folder
+Add block comments for each component in the SearchUnits folder, with information about props passed, and what the component does. No specific mention of API's is needed.
 
 ## 4. Python (10 minutes)
 
