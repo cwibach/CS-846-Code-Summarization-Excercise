@@ -17,13 +17,13 @@
 
 > **Note:** Guidelines should be actionable, specific, and usable during real coding tasks.
 
-### Guideline 1: Provide Project-Specific Examples in Your Prompt
+### Guideline 1: Provide Project-Specific Examples of Code Summaries and Context for functions/files
 
 **Description:**  
-Include 5-10 example function-summary pairs from the same project when prompting an LLM to summarize code. Keep related header files and dependent code files open in your IDE for additional context. Providing additional information for the project such as function, file, or repository names can also help provide useful context, and this also gives a good idea of what information this audience wants.
+Include a few example function-summary pairs from the same project when prompting an LLM to summarize code. Keep related header files and dependent code files open in your IDE for additional context. Providing additional information for the project such as function, file, or repository names can also help provide useful context, and this also gives a good idea of what information this audience wants.
 
 **Reasoning:**  
-Same-project few-shot prompting improves performance by ~12.5% over cross-project examples because the LLM can learn project-specific identifiers, naming conventions, and coding style [1]. GitHub Copilot documentation confirms that open tabs provide context that reduces hallucinations [8]. Zero-shot approaches perform poorly—models need multiple examples to understand a project's code→comment mapping. The ASAP paper found that repository information was the single most impactful context component, contributing more to BLEU improvements than even data flow graphs [2]. LLMs can also tailor complexity based on audience [4] and public API documentation differs from internal documentation. Other papers also confirmed that proper training data, even few-shot made a significant impact [16, 18]
+Same-project few-shot prompting improves performance by ~12.5% over cross-project examples because the LLM can learn project-specific identifiers, naming conventions, and coding style [1]. GitHub Copilot documentation confirms that open tabs provide context that reduces hallucinations [6]. Zero-shot approaches perform poorly—models need multiple examples to understand a project's code→comment mapping. The ASAP paper found that repository information was the single most impactful context component, contributing more to BLEU improvements than even data flow graphs [2]. LLMs can also tailor complexity based on audience [4] and public API documentation differs from internal documentation. Other papers also confirmed that proper training data, even few-shot made a significant impact [11, 12, 14]
 
 **Example (C++):**  
 ```cpp
@@ -114,7 +114,7 @@ void pool_free(MemoryPool* pool, void* ptr);
 Focus summaries on what the function accomplishes (its contract with callers), what parameters represent, and what guarantees it provides—not how it works internally. Include preconditions, postconditions, side effects, and exception/thread safety when relevant.
 
 **Reasoning:**  
-API documentation serves consumers who don't read implementations. Documentation standards emphasize that @param should explain meaning and constraints, not restate types [13]. However, safety-critical information like thread safety, exception guarantees, and side effects (file I/O, global state) does belong in documentation [12, 14].
+API documentation serves consumers who don't read implementations. Documentation standards emphasize that @param should explain meaning and constraints, not restate types [9]. However, safety-critical information like thread safety, exception guarantees, and side effects (file I/O, global state) does belong in documentation [8, 10].
 
 **Example:**  
 ```cpp
@@ -149,7 +149,7 @@ void* hashtable_get(const HashTable* table, const char* key);
 The models can struggle to deal with an immense amount of code such as a full repository, or very complicated functions. Breaking up steps into sections of large complex functions, or into groupings of small simililar functions has been shown to provide better results when summarizing with LLMs.
 
 **Reasoning:**  
-Shorter code segments are easier to summarize accurately [1, 3] and longer sections have provided less useful and less accurate summaries [17]. Complex functions often have initialization, main processing, and cleanup phases that each merit documentation. This approach also produces more detailed documentation for maintainers.
+Shorter code segments are easier to summarize accurately [1, 3] and longer sections have provided less useful and less accurate summaries [13]. Complex functions often have initialization, main processing, and cleanup phases that each merit documentation. This approach also produces more detailed documentation for maintainers. Breaking it up will generally produce better results that are easier to verify as you go [7].
 
 **Example:**  
 ```
@@ -169,7 +169,7 @@ Good: "Add a comment block for functions X & Z in folder Y" (where functions X &
 Repository-level code understanding is not about “writing comments,” but about reasoning through the repository’s causal structure.
 
 **Reasoning:** 
-The planning process should begin from a seed file—a clearly identified entry point—and expand to a plan for the entire project. This includes explicitly mapping, at the planning stage, which functions in the seed file call which functions in which files.
+The planning process should begin from a seed file—a clearly identified entry point—and expand to a plan for the entire project. This includes explicitly mapping, at the planning stage, which functions in the seed file call which functions in which files. [15]
 
 The plan should clearly answer questions such as: Which components call this function? Which classes inherit from this class? Where is this field used?
 
@@ -195,7 +195,6 @@ C/C++:
 - Guideline 3: Provide a Documentation Template for the Summary
 - Guideline 4: Document Purpose and Contract, Not Implementation
 
-
 Matlab:
 - Guideline 1: Provide Project-Specific Examples in Your Prompt
 - Guideline 2: Explicitly Constrain Summary Length
@@ -219,19 +218,14 @@ Python:
 [3] Sun, W., et al. "Automatic Code Summarization via ChatGPT: How Far Are We?" arXiv.  
 [4] Richards, N., & Wessel, M. "What You Need is What You Get: Theory of Mind for an LLM-Based Code Understanding Assistant." arXiv.  
 [5] Sridhara, S., et al. "Icing on the Cake: Automatic Code Summarization at Ericsson." arXiv.  
-[6] Wu, Y., et al. "Can Large Language Models Serve as Evaluators for Code Summarization?" arXiv.  
-[7] Chun, S., et al. "Is Multi-Agent Debate (MAD) the Silver Bullet?" arXiv.  
-[8] GitHub Docs. "Best practices for using GitHub Copilot."  
-[9] GitHub Blog. "Documenting and explaining legacy code with GitHub Copilot." January 2025.  
-[10] GitHub Changelog. "Improving GitHub Copilot Completions in VS Code for C++ Developers." August 2024.  
-[11] Doxygen Manual. "Documenting the code."  
-[12] LSST DM Developer Guide. "Documenting C++ Code."  
-[13] NIU Documentation Standards.  
-[14] Visual Studio Magazine. "Documenting C++ APIs with Doxygen."  
-[15] Source Code Summarization in the Era of Large Language Models. arXiv:2407.07959.
-[16] Haldar, R., & Hockenmaier, J. "Analyzing the Performance of Large Language Models on Code Summarization" arXiv.  
-[17] Sundaram, G., et al. "DocStringEval: Evaluating the Effectiveness of Language Models for Code Explanation Through DocString Generation" ieee Xplore.  
-[18] Poudel, B., et al. "DocuMint: DocString Generation for Python using Small Language Models" arXiv.  
-[19] Ramakrishna Bairi, Atharv Sonwane, Aditya Kanade, Vageesh D. C., Arun Iyer, Suresh Parthasarathy, Sriram Rajamani, B. Ashok, and Shashank Shet. 2024. CodePlan: Repository-Level Coding using LLMs and Planning.   
-
+[6] GitHub Docs. "Best practices for using GitHub Copilot."  
+[7] GitHub Blog. "Documenting and explaining legacy code with GitHub Copilot." January 2025.  
+[8] LSST DM Developer Guide. "Documenting C++ Code."  
+[9] NIU Documentation Standards.  
+[10] Visual Studio Magazine. "Documenting C++ APIs with Doxygen."  
+[11] Sun, W., et al. "Source Code Summarization in the Era of Large Language Models". arXiv.
+[12] Haldar, R., & Hockenmaier, J. "Analyzing the Performance of Large Language Models on Code Summarization" arXiv.  
+[13] Sundaram, G., et al. "DocStringEval: Evaluating the Effectiveness of Language Models for Code Explanation Through DocString Generation" ieee Xplore.  
+[14] Poudel, B., et al. "DocuMint: DocString Generation for Python using Small Language Models" arXiv.  
+[15] Bairi, R., et al. "CodePlan: Repository-Level Coding using LLMs and Planning." arXiv
 ---
