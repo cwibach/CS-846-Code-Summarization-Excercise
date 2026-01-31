@@ -10,7 +10,9 @@ For each function, the comment should concisely state what each parameter passed
 
 ## 2. Evaluation specifically for Example problems
 
-### buildBranches ###
+### Problem M_1: Matlab Functions
+
+#### buildBranches
 Criteria:
 - Take in starting index, flight usage, all data, current pairing, current cost, all combinations, max flight usage, max branch width, and if deadheads are allowed
 - Recursively build branches of possible flight pairings
@@ -31,7 +33,7 @@ Bad Example (without guidelines):
     % Outputs: pairings, costs, flightUsage
 
 
-### combineDuties ###
+#### combineDuties
 Criteria:
 - Take pairing and its cost, index of the last flight in the pairing, set of combinations, duties, duty costs, and duties already covered
 - Check what duties can be appended to the end of this pairing
@@ -69,7 +71,7 @@ Bad Example (without guidelines):
     %   [p,c,dc] = combineDuties(p,c,1,combinations,duties,costs,[]);
 
 
-### dutiestoPairings ###
+#### dutiestoPairings
 Criteria:
 - Take set of flight duties, costs, and all numeric data
 - Find duties to combine to create pairings
@@ -104,7 +106,7 @@ Bad Example (without guidelines):
     %   [fp,fc] = dutiestoPairings(duties,costs,numData);
 
 
-### findCombinations ###
+#### findCombinations
 Criteria:
 - Take in all data, max # overnights, max layover time
 - Return dictionary of feasible flight connections
@@ -137,7 +139,7 @@ Bad Example (without guidelines):
     %   comb = findCombinations(numData,strData,1,240);
 
 
-### fixTimeZone ###
+#### fixTimeZone
 Criteria:
 - Take in all numeric data
 - Adjust time zone by 4 hours
@@ -168,7 +170,7 @@ Bad Example (without guidelines):
     %   nd = fixTimeZone(numData);
 
 
-### isFeasibleCombo ###
+#### isFeasibleCombo
 Criteria:
 - Take numeric and string data for both flights, max # overnights, and max layover
 - Identify if possible for crew to work both flights using provided external constraints
@@ -201,7 +203,7 @@ Bad Example (without guidelines):
     %   ok = isFeasibleCombo(n1,s1,n2,s2,1,240);
 
 
-### makePairings ###
+#### makePairings
 Criteria:
 - Take in all numeric and string data, feasible combinations, max flight usage, max branch width, and if deadheads are allowed
 - Create pairings starting with each possible starting flight
@@ -237,7 +239,7 @@ Bad Example (without guidelines):
     %   [p,c] = makePairings(numData,strData,combinations,inf,inf,0);
 
 
-### readData ###
+#### readData
 Criteria:
 - Take in filename
 - Read in data and convert dates, times to minutes, and string data for flight data
@@ -258,7 +260,7 @@ Bad Example (without guidelines):
     % Outputs: numData, strData
 
 
-### reorderPairings ###
+#### reorderPairings
 Criteria:
 - Take in matrix of pairings, costs, and number to break up into
 - Return new sets of pairings and costs split into provided number of sections, with list of section breakpoints
@@ -291,7 +293,7 @@ Bad Example (without guidelines):
     %   [np,nc,bp] = reorderPairings(pairings,costs,8);
 
 
-### timeStringtoMinutes ###
+#### timeStringtoMinutes
 Criteria:
 - Take in string of time in 24 hour format
 - Convert to number of minutes, with 00:00 as 0 minutes
