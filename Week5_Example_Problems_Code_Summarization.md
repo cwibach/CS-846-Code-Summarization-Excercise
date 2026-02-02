@@ -74,6 +74,10 @@ All code for Python activities is in the Node-Python directory in the github pro
 
 Provide a code summary for the files under the plm_retrieval folder.
 
+PLM_retrieval constitutes the model component of the project. The files in this module lack detailed comments, and the invocation relationships between functions are not explicitly documented. When completing this task, please ensure that the following aspects are covered: (1) the specific functionalities implemented in each file, (2) the calling relationships among functions, and (3) an overall code summary of the PLM_retrieval module.
+
 ### Problem P_2:
 
 Provide a code summary for the entire repository, and evaluate the code, including whether there are areas that could be optimized or improved.
+
+In addition to the plm_retrieval module, the project also includes other baseline and evaluation modules. However, the execution relationships among the files are not clearly documented. Please first summarize the functionality of each file, then explain the overall calling relationships across the repository, and finally provide an overall summary of the repository.
