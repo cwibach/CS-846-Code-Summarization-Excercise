@@ -488,6 +488,9 @@ bool contains(const Key& key) const;
 
 ### Problem M_1: Matlab Functions
 
+**Criteria for all Matlab Functions**
+All Matlab functions should include approximately 3 lines of docstring. Initially a brief description of each input parameter, then a very short summary of what the function accomplishes, and finally a brief descrptions of the returned values.
+
 #### buildBranches
 Criteria:
 - Take in starting index, flight usage, all data, current pairing, current cost, all combinations, max flight usage, max branch width, and if deadheads are allowed
@@ -507,6 +510,11 @@ Bad Example (without guidelines):
     %BUILDBRANCHES  Recursively generate pairing branches.
     % Inputs: startIndex, flightUsage, numData, strData, pairing, cost, combinations, MFU, MBW, deadheads
     % Outputs: pairings, costs, flightUsage
+
+**Why bad example fails:**
+- Fails to give any description of input/returned parameters (even good example isn't perfect here)
+- Description is too concise.
+- This was not generated at all on the first attempt, this function was completely missed.
 
 
 #### combineDuties
@@ -546,6 +554,10 @@ Bad Example (without guidelines):
     % Example
     %   [p,c,dc] = combineDuties(p,c,1,combinations,duties,costs,[]);
 
+**Why bad example fails:**
+- Far too long docstring
+- Unnecessary information such as repeating header, and example of call
+
 
 #### dutiestoPairings
 Criteria:
@@ -581,6 +593,9 @@ Bad Example (without guidelines):
     % Example
     %   [fp,fc] = dutiestoPairings(duties,costs,numData);
 
+**Why bad example fails:**
+- Far too long docstring
+- Unnecessary information such as repeating header, and example of call
 
 #### findCombinations
 Criteria:
@@ -614,6 +629,9 @@ Bad Example (without guidelines):
     % Example
     %   comb = findCombinations(numData,strData,1,240);
 
+**Why bad example fails:**
+- Far too long docstring
+- Unnecessary information such as repeating header, and example of call
 
 #### fixTimeZone
 Criteria:
@@ -678,6 +696,9 @@ Bad Example (without guidelines):
     % Example
     %   ok = isFeasibleCombo(n1,s1,n2,s2,1,240);
 
+**Why bad example fails:**
+- Far too long docstring
+- Unnecessary information such as repeating header, and example of call
 
 #### makePairings
 Criteria:
@@ -714,6 +735,9 @@ Bad Example (without guidelines):
     % Example
     %   [p,c] = makePairings(numData,strData,combinations,inf,inf,0);
 
+**Why bad example fails:**
+- Far too long docstring
+- Unnecessary information such as repeating header, and example of call
 
 #### readData
 Criteria:
@@ -735,6 +759,10 @@ Bad Example (without guidelines):
     % Inputs: fileName
     % Outputs: numData, strData
 
+**Why bad example fails:**
+- Gives no description of input parameters or return values
+- Docstring initially not generated, function was missed completely
+- Should mention location string specifically, that is important
 
 #### reorderPairings
 Criteria:
@@ -768,6 +796,9 @@ Bad Example (without guidelines):
     % Example
     %   [np,nc,bp] = reorderPairings(pairings,costs,8);
 
+**Why bad example fails:**
+- Far too long docstring
+- Unnecessary information such as repeating header, and example of call
 
 #### timeStringtoMinutes
 Criteria:
@@ -796,6 +827,17 @@ Bad Example (without guidelines):
     %
     % Example
     %   m = timeStringtoMinutes("09:30");
+
+**Why bad example fails:**
+- Far too long docstring
+- Unnecessary information such as repeating header, and example of call
+
+### Criteria for all React ###
+- Should indicate what props are accepted and what each one means
+- Should briefly describe what is rendered with this component
+- If certain fields or data points are shown, should indicate which (critical for expanded vs collapsed)
+- Should be easy to read
+- Don't focus on backend API calls
 
 ### Problem R_1: Landlord Profile ###
 
@@ -827,6 +869,11 @@ Bad Example (without guidelines):
     Props: { item, handleChangeMode, userID, getProfile } — `getProfile` is
     invoked after a successful save to refresh the parent view.
 
+**Why bad example fails:**
+- Gives no description of multiple props accepted
+- Structure not easily readable
+- Too much focus on API calls
+
 
 #### Landlord Profile ####
 Criteria:
@@ -850,6 +897,11 @@ Bad Example (without guidelines):
     actions (Add Posting, My Units), and toggles into an edit mode that
     mounts `EditLandlordProfile` for inline editing. Uses `UserContext` to
     determine the current user and calls the backend to retrieve/update data.
+
+**Why bad example fails:**
+- Gives no description of multiple props accepted
+- Structure not easily readable
+- All components use UserContext in the same way, not useful in this component
 
 ### Problem R_2: Search Units ###
 
@@ -875,6 +927,11 @@ Bad Example (without guidelines):
     Only renders the list if there are interested renters, displaying them in a styled container
     with a purple header and utilizing the RenterList component for rendering individual renter profiles.
 
+**Why bad example fails:**
+- Gives no description of multiple props accepted
+- Structure not easily readable
+- Too much focus on API calls
+- Describes colours and styles which are not important
 
 #### ListUnits ####
 Criteria:
@@ -898,6 +955,10 @@ Bad Example (without guidelines):
     When a unit is expanded, also displays the InterestedList showing renters interested in that unit.
     Coordinates between ExpandedUnitInfo and UnexpandedUnitInfo components to toggle unit display states.
 
+**Why bad example fails:**
+- Gives no description of multiple props accepted
+- Structure not easily readable
+- Too much detail for what is shown, can be more concise
 
 
 #### SearchMenuUnits ####
@@ -933,6 +994,12 @@ Bad Example (without guidelines):
     appropriate error alerts. Offers a "Reset Filters" button to clear all selections
     and an "Only Show Favourites" checkbox to filter units the user has marked as interested.
     Calls the backend API with all filter parameters and updates the parent component's unit list.
+
+**Why bad example fails:**
+- Gives no description of multiple props accepted
+- Structure not easily readable
+- Too much detail for what is shown, can be more concise
+- Description of text of buttons, and error alerts not useful
 
 #### UnitInfoBoth ####
 - Separate comment block for each component in file
@@ -987,6 +1054,13 @@ Bad Example (without guidelines):
     
     Both components manage interest state independently, calling backend APIs to check and
     update whether the current user has marked the unit as a favourite.
+
+**Why bad example fails:**
+- Gives no description of multiple props accepted
+- Put both component comments into same docstring
+- Weirdly specific on description of what is included
+- Information about what both do is unnecessary
+
 
 ### Problem P_1: Python Summary ###
 Criteria:
