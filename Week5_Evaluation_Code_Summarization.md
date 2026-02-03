@@ -1061,6 +1061,12 @@ Bad Example (without guidelines):
 - Weirdly specific on description of what is included
 - Information about what both do is unnecessary
 
+### Criteria for all Python Problems
+* Although Python code is generally readable and concise, large Python projects can be challenging due to the complexity of organizing logic across the entire codebase. Therefore, the code summary should clearly describe the overall structure and functionality of the project.
+* The calling relationships among individual Python files and functions should be described in detail.
+* An entry file should be identified, and the execution logic should be explained starting from this entry point.
+* The analysis should begin by examining the inputs and outputs of each file.
+
 
 ### Problem P_1: Python Summary ###
 Criteria:
@@ -1131,6 +1137,10 @@ Bad Example (without guidelines):
 
     % utils.py — misc utilities: logging, seed setting, checkpoint save/load, metric helpers, and small I/O helpers used by training and evaluation.
 
+**Why bad example fails:**
+- Gives no description of general file
+- No Inputs and Outputs for each file
+- No interaction between files included
 
 
 
@@ -1188,6 +1198,14 @@ NCCL, CUDA drivers (for multi-GPU training)
 
 
 
+
+
 Bad Example (without guidelines):
 
     % Implementations and experiments for document retrieval using classical IR baselines and pretrained language models (PLMs), plus tools for dataset generation, labeling and evaluation.
+
+
+**Why bad example fails:**
+- No detailed summary for the whole repo.
+- The code has not been categorized or summarized by category.
+- No environmental requirements are specified for this repository.
